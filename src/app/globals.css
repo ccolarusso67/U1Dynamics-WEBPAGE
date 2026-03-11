@@ -1,26 +1,551 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0D0D0D;
+  --foreground: #E5E5E5;
+  --u1-carbon: #0D0D0D;
+  --u1-charcoal: #1A1A1A;
+  --u1-gunmetal: #2D2D2D;
+  --u1-red: #E10600;
+  --u1-silver: #C0C0C0;
+  --u1-chrome: #A8A9AD;
+  --u1-dark: #0D0D0D;
+  --u1-gray: #141414;
+  --u1-blue: #2563EB;
+  --u1-steel-blue: #2563EB;
+  --u1-steel-blue-light: #3B82F6;
+  --u1-steel-blue-dark: #1D4ED8;
+  --u1-cyan: #0EA5E9;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-u1-carbon: var(--u1-carbon);
+  --color-u1-charcoal: var(--u1-charcoal);
+  --color-u1-gunmetal: var(--u1-gunmetal);
+  --color-u1-red: var(--u1-red);
+  --color-u1-silver: var(--u1-silver);
+  --color-u1-chrome: var(--u1-chrome);
+  --color-u1-dark: var(--u1-dark);
+  --color-u1-gray: var(--u1-gray);
+  --color-u1-blue: var(--u1-blue);
+  --color-u1-steel-blue: var(--u1-steel-blue);
+  --color-u1-steel-blue-light: var(--u1-steel-blue-light);
+  --color-u1-steel-blue-dark: var(--u1-steel-blue-dark);
+  --color-u1-cyan: var(--u1-cyan);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ============================================
+   TECH GRID PATTERN (industrial blueprint)
+   ============================================ */
+.tech-grid {
+  position: relative;
+  overflow: hidden;
+}
+
+.tech-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(37, 99, 235, 0.03) 0px,
+      rgba(37, 99, 235, 0.03) 1px,
+      transparent 1px,
+      transparent 60px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(37, 99, 235, 0.03) 0px,
+      rgba(37, 99, 235, 0.03) 1px,
+      transparent 1px,
+      transparent 60px
+    );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.tech-grid > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* ============================================
+   GEOMETRIC ACCENT (replaces checkered)
+   ============================================ */
+.geometric-accent {
+  position: relative;
+}
+
+.geometric-accent::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--u1-steel-blue), var(--u1-red), var(--u1-steel-blue), transparent);
+  z-index: 3;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes chromeShimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(37, 99, 235, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(37, 99, 235, 0.6); }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes techScan {
+  0% { transform: translateY(-100%); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+@keyframes subtlePulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in-left {
+  animation: fadeInLeft 0.8s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* ============================================
+   TECH SCAN (hero overlay)
+   ============================================ */
+.tech-scan {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.tech-scan::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--u1-steel-blue), transparent);
+  animation: techScan 8s ease-in-out infinite;
+}
+
+/* ============================================
+   METALLIC TEXT EFFECT
+   ============================================ */
+.gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #E5E5E5 40%, #ffffff 60%, #C0C0C0 80%, #ffffff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: chromeShimmer 8s linear infinite;
+}
+
+/* ============================================
+   GLASS MORPHISM
+   ============================================ */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-dark {
+  background: rgba(13, 13, 13, 0.90);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ============================================
+   SERVICE / INFO CARDS
+   ============================================ */
+.service-card {
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--u1-steel-blue), var(--u1-red));
+  transform: scaleX(1);
+  transform-origin: left;
+  transition: height 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.1), 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.service-card:hover::before {
+  height: 3px;
+}
+
+/* Stat card */
+.stat-card {
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.15);
+}
+
+/* Dashboard card (for metrics/data sections) */
+.dashboard-card {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(37, 99, 235, 0.1);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.dashboard-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--u1-steel-blue), var(--u1-red));
+}
+
+.dashboard-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(37, 99, 235, 0.25);
+}
+
+/* ============================================
+   RED ACCENT LINE
+   ============================================ */
+.red-accent::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--u1-red), var(--u1-steel-blue));
+  margin-top: 12px;
+  border-radius: 0;
+}
+
+/* ============================================
+   SECTION DIVIDER
+   ============================================ */
+.section-divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--u1-red), var(--u1-steel-blue));
+  margin: 0 auto 24px;
+}
+
+/* ============================================
+   BUTTON STYLES
+   ============================================ */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: linear-gradient(135deg, #E10600 0%, #b50500 100%);
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(225, 6, 0, 0.35);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(225, 6, 0, 0.5);
+}
+
+.btn-primary:hover::after {
+  left: 100%;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--u1-silver);
+  font-weight: 700;
+  font-size: 1rem;
+  border: 2px solid var(--u1-silver);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  backdrop-filter: blur(4px);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.btn-secondary:hover {
+  background: var(--u1-silver);
+  color: var(--u1-carbon);
+  border-color: var(--u1-silver);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(192, 192, 192, 0.2);
+}
+
+.btn-steel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: linear-gradient(135deg, var(--u1-steel-blue) 0%, var(--u1-steel-blue-dark) 100%);
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.btn-steel:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.5);
+}
+
+/* ============================================
+   VIDEO CONTAINER
+   ============================================ */
+.video-container {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(37, 99, 235, 0.15);
+}
+
+.video-container::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--u1-steel-blue), var(--u1-silver), var(--u1-red));
+  z-index: -1;
+}
+
+/* ============================================
+   FORM STYLES (dark theme)
+   ============================================ */
+.form-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #2D2D2D;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  outline: none;
+  background: #1A1A1A;
+  color: #E5E5E5;
+  color-scheme: dark;
+}
+
+.form-input:focus {
+  border-color: var(--u1-steel-blue);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+.form-input::placeholder {
+  color: #666666;
+}
+
+/* ============================================
+   DECORATIVE ELEMENTS
+   ============================================ */
+.geo-light {
+  position: absolute;
+  filter: blur(80px);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.gradient-border {
+  position: relative;
+  border-radius: 8px;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--u1-steel-blue), var(--u1-silver));
+}
+
+.gradient-border > * {
+  border-radius: 7px;
+  background: var(--u1-carbon);
+}
+
+/* Number counter highlight */
+.highlight-number {
+  background: linear-gradient(135deg, var(--u1-steel-blue), var(--u1-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.highlight-number-red {
+  background: linear-gradient(135deg, var(--u1-red), #ff4444);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Icon container with gradient (red) */
+.icon-gradient {
+  background: linear-gradient(135deg, rgba(225, 6, 0, 0.1), rgba(192, 192, 192, 0.05));
+  position: relative;
+}
+
+.icon-gradient::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid rgba(225, 6, 0, 0.1);
+}
+
+/* Icon container with gradient (blue) */
+.icon-gradient-blue {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(14, 165, 233, 0.05));
+  position: relative;
+}
+
+.icon-gradient-blue::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid rgba(37, 99, 235, 0.1);
+}
+
+/* ============================================
+   ACCENT BAR (replaces racing stripe)
+   ============================================ */
+.accent-bar {
+  position: relative;
+}
+
+.accent-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--u1-red), var(--u1-steel-blue));
+}
+
+/* ============================================
+   METALLIC BADGE
+   ============================================ */
+.metallic-badge {
+  background: linear-gradient(145deg, #3a3a3a, #1a1a1a);
+  border: 1px solid rgba(192, 192, 192, 0.2);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05),
+              0 4px 12px rgba(0,0,0,0.4);
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0D0D0D;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--u1-steel-blue), var(--u1-steel-blue-dark));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--u1-steel-blue);
 }
