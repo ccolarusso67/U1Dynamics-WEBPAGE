@@ -37,9 +37,10 @@ export default function ContactPage() {
       {/* Header */}
       <section className="pt-28 pb-12 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl font-black text-gray-900 mb-3">Contact Us</h1>
-          <p className="text-gray-400 max-w-lg mx-auto">
-            Ready to get started? Reach out and let&apos;s talk.
+          <p className="text-sm font-semibold tracking-wide uppercase mb-4" style={{ color: "#2563EB" }}>Contact</p>
+          <h1 className="text-4xl sm:text-5xl font-black text-gray-900 mb-3">Let&apos;s Build Something Together</h1>
+          <p className="text-gray-400 max-w-xl mx-auto">
+            If you are looking for a reliable lubricant manufacturer, private label partner, or contract blending facility, our team would welcome the opportunity to discuss your project.
           </p>
         </div>
       </section>
@@ -105,10 +106,11 @@ export default function ContactPage() {
                     <select id="service" className="form-input" value={formData.service}
                       onChange={(e) => setFormData({ ...formData, service: e.target.value })}>
                       <option value="">Select a service...</option>
-                      <option value="Blending Engineering">Blending Engineering</option>
-                      <option value="Water-Based Formulations">Water-Based Formulations</option>
-                      <option value="Contract Filling and Packaging">Contract Filling & Packaging</option>
-                      <option value="Private Label Manufacturing">Private Label Manufacturing</option>
+                      <option value="Contract Lubricant Manufacturing">Contract Lubricant Manufacturing</option>
+                      <option value="Private Label Lubricants">Private Label Lubricants</option>
+                      <option value="DEF Manufacturing">DEF Manufacturing</option>
+                      <option value="Coolant & Antifreeze Manufacturing">Coolant & Antifreeze Manufacturing</option>
+                      <option value="Contract Filling & Packaging">Contract Filling & Packaging</option>
                       <option value="Product Inquiry">Product Inquiry</option>
                       <option value="Other">Other</option>
                     </select>
@@ -134,9 +136,15 @@ export default function ContactPage() {
             <div className="lg:col-span-2">
               <div className="space-y-6 mb-8">
                 <div>
-                  <h3 className="text-sm font-semibold text-gray-900 mb-1">Address</h3>
+                  <h3 className="text-sm font-semibold text-gray-900 mb-1">Manufacturing Facility</h3>
                   <p className="text-sm text-gray-400">
                     4468 Genoa Red Bluff Road<br />Pasadena, Texas 77505
+                  </p>
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold text-gray-900 mb-1">Corporate Offices</h3>
+                  <p className="text-sm text-gray-400">
+                    1600 Ponce De Leon Blvd STE 1108<br />Coral Gables, Florida 33134
                   </p>
                 </div>
                 <div>

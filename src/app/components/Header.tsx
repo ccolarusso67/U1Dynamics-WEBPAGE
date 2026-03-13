@@ -29,32 +29,33 @@ export default function Header() {
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="relative flex items-center justify-between h-20">
           <Link href="/" className="flex-shrink-0">
             <Image
-              src="/images/logo-black.png"
-              alt="U1Dynamics"
-              width={140}
-              height={47}
+              src="/images/logo-color.png"
+              alt="U1Dynamics Manufacturing LLC - Lubricant Blending and Private Label Manufacturing"
+              width={220}
+              height={73}
               priority
-              className="h-9 w-auto"
+              className="h-16 w-auto"
             />
           </Link>
 
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-10 absolute left-1/2 -translate-x-1/2">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium transition-colors ${
+                className={`text-base font-semibold transition-colors ${
                   pathname === link.href
                     ? "text-gray-900"
-                    : "text-gray-400 hover:text-gray-900"
+                    : "text-gray-600 hover:text-gray-900"
                 }`}
+                style={pathname === link.href ? { color: "#2563EB" } : {}}
               >
                 {link.label}
                 {pathname === link.href && (
-                  <span className="block h-0.5 bg-accent mt-0.5 rounded-full" />
+                  <span className="block h-0.5 rounded-full mt-0.5" style={{ background: "#2563EB" }} />
                 )}
               </Link>
             ))}

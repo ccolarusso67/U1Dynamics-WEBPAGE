@@ -1,64 +1,123 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Products",
+  title: "Products & Services — Lubricants, DEF, Coolants & Industrial Fluids",
   description:
-    "Engine oils, transmission fluids, hydraulic oils, gear lubricants, greases, antifreeze, coolants, DEF, and industrial fluids.",
+    "U1Dynamics manufactures engine oils, transmission fluids, gear lubricants, hydraulic oils, greases, coolants, DEF, and industrial fluids. Contract blending, private label, and custom packaging from quart bottles to 275-gallon totes.",
+  alternates: {
+    canonical: "/products",
+  },
+  openGraph: {
+    title: "Products & Services | U1Dynamics Manufacturing",
+    description:
+      "Full-spectrum lubricant and fluid manufacturing: engine oils, gear oils, DEF, coolants, and industrial fluids with flexible packaging options.",
+    url: "https://u1dynamics.com/products",
+    images: [
+      {
+        url: "/images/product-lineup.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Ultra1Plus Premium Quality Oils - Full Product Lineup",
+      },
+    ],
+  },
 };
 
 const products = [
   {
     title: "Engine Oils",
-    description: "Conventional, synthetic blend, and full synthetic formulations.",
-    icon: "M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z",
+    description: "Conventional, synthetic blend, and full synthetic formulations for automotive and heavy-duty applications.",
+    image: "/images/facility/oil-pouring.jpg",
   },
   {
     title: "Transmission Fluids",
-    description: "ATF and manual transmission fluid formulations.",
-    icon: "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z",
+    description: "ATF and manual transmission fluid formulations for modern drivetrains.",
+    image: "/images/facility/filling-bottles.jpg",
   },
   {
     title: "Hydraulic Oils",
-    description: "Industrial and mobile hydraulic system fluids.",
-    icon: "M13 10V3L4 14h7v7l9-11h-7z",
+    description: "Industrial and mobile hydraulic system fluids for demanding mechanical environments.",
+    image: "/images/facility/blending-vortex.jpg",
   },
   {
     title: "Gear Lubricants",
-    description: "Industrial and automotive gear oil formulations.",
-    icon: "M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.645-6.536l-1.299.75m-10.112 6.536L6.645 5.464m0 13.072l1.299-.75m10.112-6.536l1.299.75M12 3v1.5m0 15V21",
+    description: "Industrial and automotive gear oil formulations for maximum protection.",
+    image: "/images/facility/pails-gear-oil.jpg",
   },
   {
     title: "Greases",
-    description: "Multi-purpose and specialty grease products.",
-    icon: "M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4",
+    description: "Multi-purpose and specialty grease products for diverse applications.",
+    image: "/images/facility/drums-closeup.jpg",
   },
   {
     title: "Antifreeze & Coolants",
-    description: "OAT, HOAT, and IAT coolant formulations.",
-    icon: "M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z",
+    description: "Extended life coolants, heavy-duty antifreeze, and universal coolant technologies.",
+    image: "/images/facility/raw-material-storage.jpg",
   },
   {
-    title: "DEF",
-    description: "API-certified diesel exhaust fluid, ISO 22241 compliant.",
-    icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
+    title: "Diesel Exhaust Fluid",
+    description: "ISO 22241 compliant DEF in bulk, tote, drum, and retail packaging formats.",
+    image: "/images/facility/ibc-tank.jpg",
   },
   {
     title: "Industrial Fluids",
-    description: "Water-based cleaners, degreasers, and custom formulations.",
-    icon: "M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4",
+    description: "Water-based cleaners, degreasers, and custom formulations for industrial use.",
+    image: "/images/facility/lab-testing.jpg",
   },
 ];
+
+const packaging = [
+  "Quart bottles",
+  "Gallon bottles",
+  "5-gallon pails",
+  "55-gallon drums",
+  "275-gallon totes",
+  "Custom packaging formats",
+];
+
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "U1Dynamics Manufacturing Products",
+  description: "Lubricants, fluids, and industrial products manufactured by U1Dynamics Manufacturing LLC",
+  url: "https://u1dynamics.com/products",
+  numberOfItems: 8,
+  itemListElement: products.map((product, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    item: {
+      "@type": "Product",
+      name: product.title,
+      description: product.description,
+      manufacturer: {
+        "@type": "Organization",
+        name: "U1Dynamics Manufacturing LLC",
+        url: "https://u1dynamics.com",
+      },
+      brand: {
+        "@type": "Brand",
+        name: "Ultra1Plus",
+      },
+    },
+  })),
+};
 
 export default function ProductsPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
       {/* Header */}
       <section className="pt-28 pb-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl font-black text-gray-900 mb-3">Products</h1>
-          <p className="text-gray-400 max-w-lg mx-auto">
-            Precision-formulated petroleum and water-based products manufactured to the highest standards.
+          <p className="text-sm font-semibold tracking-wide uppercase mb-4" style={{ color: "#2563EB" }}>Product Portfolio</p>
+          <h1 className="text-4xl sm:text-5xl font-black text-gray-900 mb-4">What We Manufacture</h1>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            We specialize in the blending, manufacturing, and packaging of lubricants, coolants, DEF, and industrial performance fluids for partners across the United States and international markets.
           </p>
         </div>
       </section>
@@ -70,17 +129,103 @@ export default function ProductsPage() {
             {products.map((product) => (
               <div
                 key={product.title}
-                className="border border-gray-200 rounded-xl p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-200"
+                className="border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-200 group"
               >
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gray-50 text-accent mb-4">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={product.icon} />
-                  </svg>
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <Image
+                    src={product.image}
+                    alt={product.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
-                <h3 className="text-base font-bold text-gray-900 mb-1.5">{product.title}</h3>
-                <p className="text-sm text-gray-400 leading-relaxed">{product.description}</p>
+                <div className="p-5">
+                  <h3 className="text-base font-bold text-gray-900 mb-1.5">{product.title}</h3>
+                  <p className="text-sm text-gray-400 leading-relaxed">{product.description}</p>
+                </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Packaging Capabilities */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <p className="text-sm font-semibold tracking-wide uppercase mb-4" style={{ color: "#2563EB" }}>Filling & Packaging</p>
+              <h2 className="text-3xl font-black text-gray-900 mb-4">Multiple Packaging Configurations</h2>
+              <p className="text-gray-400 leading-relaxed mb-6">
+                Our facility supports flexible production with multiple filling lines capable of handling diverse packaging formats.
+              </p>
+              <div className="grid grid-cols-2 gap-3">
+                {packaging.map((item) => (
+                  <div key={item} className="flex items-center gap-2">
+                    <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="#2563EB" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-sm text-gray-600">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
+              <Image src="/images/facility/filling-nozzles.jpg" alt="Multiple filling nozzles for lubricant packaging at U1Dynamics facility" fill className="object-cover" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Process Strip */}
+      <section className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="text-sm font-semibold tracking-wide uppercase mb-4" style={{ color: "#2563EB" }}>Our Process</p>
+            <h2 className="text-3xl font-black text-gray-900 mb-3">From Formulation to Delivery</h2>
+            <p className="text-gray-400 max-w-lg mx-auto">
+              Every product is blended, filled, labeled, and shipped from our Pasadena, Texas facility.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { src: "/images/facility/blending-composite.jpg", alt: "Lubricant formulation and blending process at U1Dynamics", label: "Formulate" },
+              { src: "/images/facility/filling-nozzles.jpg", alt: "Precision lubricant filling nozzles on automated production line", label: "Fill" },
+              { src: "/images/facility/labeling-machine.jpg", alt: "Automated bottle labeling machine for private label lubricants", label: "Label" },
+              { src: "/images/facility/branded-truck.jpg", alt: "Ultra1Plus branded truck for lubricant product distribution", label: "Ship" },
+            ].map((step) => (
+              <div key={step.label} className="text-center">
+                <div className="relative aspect-square rounded-xl overflow-hidden mb-3 group">
+                  <Image src={step.src} alt={step.alt} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                </div>
+                <span className="text-sm font-bold text-gray-900">{step.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Quality */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-sm font-semibold tracking-wide uppercase mb-4" style={{ color: "#2563EB" }}>Quality Control</p>
+          <h2 className="text-3xl font-black text-gray-900 mb-4">Every Batch. Every Time.</h2>
+          <p className="text-gray-400 leading-relaxed">
+            Each batch is monitored using strict quality assurance procedures to ensure consistent performance and compliance with industry standards. Our quality control protocols cover every stage from raw material inspection through final product release.
+          </p>
+        </div>
+      </section>
+
+      {/* Product Lineup */}
+      <section className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
+            <Image
+              src="/images/product-lineup.jpg"
+              alt="Ultra1Plus Premium Quality Oils - Full Product Lineup"
+              fill
+              className="object-cover object-center"
+            />
           </div>
         </div>
       </section>
@@ -88,9 +233,9 @@ export default function ProductsPage() {
       {/* CTA */}
       <section className="py-24 bg-gray-50">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-black text-gray-900 mb-3">Need a custom formulation?</h2>
+          <h2 className="text-3xl font-black text-gray-900 mb-3">Need a Custom Formulation?</h2>
           <p className="text-gray-400 mb-8">
-            Our engineering team can develop products tailored to your exact specifications.
+            Our engineering team can develop products tailored to your exact specifications. We help partners move from concept to production with efficiency and confidence.
           </p>
           <Link href="/contact" className="btn btn-primary">Contact Us</Link>
         </div>

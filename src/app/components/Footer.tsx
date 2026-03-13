@@ -10,18 +10,22 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <Image
-              src="/images/logo-black.png"
-              alt="U1Dynamics"
+              src="/images/logo-color.png"
+              alt="U1Dynamics Manufacturing LLC"
               width={120}
               height={40}
               className="h-8 w-auto mb-3"
             />
-            <p className="text-gray-400 text-sm leading-relaxed">
-              Precision manufacturing in Pasadena, Texas.
+            <p className="text-gray-400 text-sm leading-relaxed mb-3">
+              Precision Fluid Manufacturing
             </p>
-            <p className="text-gray-400 text-sm mt-2">
-              4468 Genoa Red Bluff Road<br />
-              Pasadena, TX 77505
+            <p className="text-gray-400 text-xs leading-relaxed">
+              <span className="font-medium text-gray-500">Manufacturing Facility</span><br />
+              4468 Genoa Red Bluff Road, Pasadena, TX 77505
+            </p>
+            <p className="text-gray-400 text-xs leading-relaxed mt-2">
+              <span className="font-medium text-gray-500">Corporate Offices</span><br />
+              1600 Ponce De Leon Blvd STE 1108, Coral Gables, FL 33134
             </p>
           </div>
 

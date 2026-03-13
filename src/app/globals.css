@@ -74,13 +74,15 @@ body {
 
 .btn-outline {
   background: transparent;
-  color: var(--gray-900);
-  border: 1.5px solid var(--gray-200);
+  color: var(--accent);
+  border: 2px solid var(--accent);
 }
 
 .btn-outline:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+  background: var(--accent);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
 
 /* Form inputs */

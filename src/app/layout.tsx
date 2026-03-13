@@ -10,39 +10,68 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://u1dynamics.com"),
   title: {
-    default: "U1Dynamics Manufacturing LLC",
+    default: "U1Dynamics Manufacturing | Lubricant Blending & Private Label Manufacturing",
     template: "%s | U1Dynamics Manufacturing LLC",
   },
   description:
-    "Petroleum and water-based product blending, contract filling, and private label manufacturing in Pasadena, Texas.",
+    "U1Dynamics Manufacturing LLC is a U.S.-based lubricant blending, contract filling, and private label manufacturing facility in Pasadena, Texas. Engine oils, gear oils, DEF, coolants, and industrial fluids.",
   keywords: [
-    "petroleum blending",
-    "private label manufacturing",
-    "contract filling",
-    "lubricant blending",
-    "Pasadena Texas",
-    "Houston manufacturing",
+    "lubricant manufacturer",
+    "contract lubricant blending",
+    "private label lubricants",
+    "lubricant blending facility",
+    "contract filling services",
+    "DEF manufacturer",
+    "coolant manufacturer",
+    "engine oil manufacturer",
+    "gear oil blending",
+    "hydraulic oil manufacturer",
+    "Pasadena Texas manufacturing",
+    "Houston lubricant manufacturer",
+    "Ultra1Plus",
+    "U1Dynamics",
   ],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "U1Dynamics Manufacturing LLC",
+    title: "U1Dynamics Manufacturing | Lubricant Blending & Private Label Manufacturing",
     description:
-      "Petroleum and water-based product blending, contract filling, and private label manufacturing.",
+      "U.S.-based lubricant blending, contract filling, and private label manufacturing. Engine oils, gear oils, DEF, coolants, and industrial fluids from our 95,000 sq ft facility in Pasadena, Texas.",
     url: "https://u1dynamics.com",
     siteName: "U1Dynamics Manufacturing LLC",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/images/product-lineup.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Ultra1Plus Premium Quality Oils by U1Dynamics Manufacturing",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "U1Dynamics Manufacturing LLC",
+    title: "U1Dynamics Manufacturing | Lubricant Blending & Private Label Manufacturing",
     description:
-      "Petroleum and water-based product blending, contract filling, and private label manufacturing.",
+      "U.S.-based lubricant blending, contract filling, and private label manufacturing in Pasadena, Texas.",
+    images: ["/images/product-lineup.jpg"],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
+  verification: {},
 };
 
 export default function RootLayout({
@@ -59,30 +88,95 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "ManufacturingBusiness",
+              "@id": "https://u1dynamics.com/#organization",
               name: "U1Dynamics Manufacturing LLC",
               description:
-                "Petroleum and water-based product blending, contract filling, and private label manufacturing.",
+                "U.S.-based lubricant blending, contract filling, and private label manufacturing facility. Specializing in engine oils, gear oils, transmission fluids, hydraulic oils, DEF, coolants, and industrial fluids.",
               url: "https://u1dynamics.com",
               telephone: "+18886878521",
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: "4468 Genoa Red Bluff Road",
-                addressLocality: "Pasadena",
-                addressRegion: "TX",
-                postalCode: "77505",
-                addressCountry: "US",
+              email: "info@u1dynamics.com",
+              logo: {
+                "@type": "ImageObject",
+                url: "https://u1dynamics.com/images/logo-color.png",
               },
+              image: [
+                "https://u1dynamics.com/images/facility/aerial-hero.jpg",
+                "https://u1dynamics.com/images/product-lineup.jpg",
+              ],
+              brand: {
+                "@type": "Brand",
+                name: "Ultra1Plus",
+                description: "Premium Quality Oils - Made in USA",
+              },
+              address: [
+                {
+                  "@type": "PostalAddress",
+                  name: "Manufacturing Facility",
+                  streetAddress: "4468 Genoa Red Bluff Road",
+                  addressLocality: "Pasadena",
+                  addressRegion: "TX",
+                  postalCode: "77505",
+                  addressCountry: "US",
+                },
+                {
+                  "@type": "PostalAddress",
+                  name: "Corporate Offices",
+                  streetAddress: "1600 Ponce De Leon Blvd STE 1108",
+                  addressLocality: "Coral Gables",
+                  addressRegion: "FL",
+                  postalCode: "33134",
+                  addressCountry: "US",
+                },
+              ],
               geo: {
                 "@type": "GeoCoordinates",
                 latitude: 29.6633,
                 longitude: -95.1513,
               },
+              areaServed: [
+                { "@type": "Country", name: "United States" },
+                { "@type": "AdministrativeArea", name: "International" },
+              ],
               openingHoursSpecification: {
                 "@type": "OpeningHoursSpecification",
                 dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
                 opens: "08:00",
                 closes: "17:00",
               },
+              makesOffer: [
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "Contract Lubricant Manufacturing",
+                    description: "Formulation blending, production scale-up, quality control, packaging, filling, and logistics coordination.",
+                  },
+                },
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "Private Label Lubricant Manufacturing",
+                    description: "Engine oils, gear oils, transmission fluids, hydraulic oils, and specialty lubricants under your brand.",
+                  },
+                },
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "DEF Manufacturing",
+                    description: "ISO 22241 compliant diesel exhaust fluid in bulk, tote, drum, and retail packaging formats.",
+                  },
+                },
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "Coolant & Antifreeze Manufacturing",
+                    description: "Extended life coolants, heavy-duty antifreeze, and universal coolant technologies.",
+                  },
+                },
+              ],
             }),
           }}
         />
