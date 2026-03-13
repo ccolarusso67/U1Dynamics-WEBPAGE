@@ -17,41 +17,57 @@ const formats = [
     title: "Quart Bottles",
     description:
       "Retail-ready quart packaging for motor oils, transmission fluids, and specialty products. Ideal for auto parts stores, retail chains, and convenience outlets.",
+    image: "/images/packaging/quart-bottles.jpg",
+    imageAlt: "Quart bottles being filled on U1Dynamics production line",
   },
   {
     title: "Gallon Bottles",
     description:
       "Single-gallon containers for consumer and light commercial use. Popular for engine oils, coolants, and DEF sold through retail and wholesale channels.",
+    image: "/images/packaging/gallon-bottles.jpg",
+    imageAlt: "Gallon bottles being filled with lubricant at U1Dynamics facility",
   },
   {
     title: "5-Quart Jugs",
     description:
       "The go-to format for DIY oil changes and service shops. 5-quart jugs offer convenience and value for high-volume motor oil and fluid products.",
+    image: "/images/packaging/five-quart-jugs.jpg",
+    imageAlt: "Five-quart jug bottles on conveyor belt at U1Dynamics manufacturing",
   },
   {
     title: "5-Gallon Pails",
     description:
       "Durable pail packaging for fleet maintenance, workshops, and industrial applications. Available with pour spouts and resealable lids for easy handling.",
+    image: "/images/packaging/five-gallon-pails.jpg",
+    imageAlt: "Ultra1Plus 5-gallon pails of synthetic gear oil stacked in warehouse",
   },
   {
     title: "55-Gallon Drums",
     description:
       "Industry-standard steel and poly drums for bulk lubricants, hydraulic oils, gear oils, and industrial fluids. Banded and palletized for safe transport.",
+    image: "/images/packaging/fifty-five-gallon-drums.jpg",
+    imageAlt: "Ultra1Plus branded 55-gallon drums with Made in USA on production floor",
   },
   {
     title: "275-Gallon Totes",
     description:
       "IBC totes for high-volume users who need bulk supply without tanker delivery. Stackable, forklift-accessible, and ideal for production floor use.",
+    image: "/images/packaging/totes-275-gallon.jpg",
+    imageAlt: "275-gallon IBC totes stored on warehouse racks at U1Dynamics facility",
   },
   {
     title: "Flexibags",
     description:
       "Flexible bulk containers fitted inside standard 20-foot shipping containers. Cost-effective for international export shipments of non-hazardous fluids.",
+    image: "/images/packaging/flexibags.jpeg",
+    imageAlt: "Flexibag bulk container packaging for international lubricant export",
   },
   {
     title: "Custom Formats",
     description:
       "Need a non-standard size or specialty container? We work with partners to develop custom packaging solutions tailored to unique market requirements.",
+    image: "/images/packaging/custom-formats.jpeg",
+    imageAlt: "Ultra1Plus custom wooden gift box with branded lubricant bottle",
   },
 ];
 
@@ -91,14 +107,24 @@ export default function PackagingFormatsPage() {
             {formats.map((format) => (
               <div
                 key={format.title}
-                className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-200"
+                className="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-200"
               >
-                <h3 className="text-base font-bold text-gray-900 mb-2">
-                  {format.title}
-                </h3>
-                <p className="text-sm text-gray-400 leading-relaxed">
-                  {format.description}
-                </p>
+                <div className="relative aspect-[4/3]">
+                  <Image
+                    src={format.image}
+                    alt={format.imageAlt}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-5">
+                  <h3 className="text-base font-bold text-gray-900 mb-2">
+                    {format.title}
+                  </h3>
+                  <p className="text-sm text-gray-400 leading-relaxed">
+                    {format.description}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
