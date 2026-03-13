@@ -7,10 +7,7 @@ import { usePathname } from "next/navigation";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/capabilities", label: "Capabilities" },
   { href: "/products", label: "Products" },
-  { href: "/facility", label: "Facility" },
-  { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -27,109 +24,75 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-[#0D0D0D]/95 backdrop-blur-md shadow-lg shadow-black/40"
-          : "bg-transparent backdrop-blur-sm"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white ${
+        scrolled ? "shadow-sm border-b border-gray-200" : ""
       }`}
     >
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link href="/" className="flex-shrink-0 group">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          <Link href="/" className="flex-shrink-0">
             <Image
-              src="/images/logo-white.png"
-              alt="U1Dynamics Manufacturing LLC"
-              width={180}
-              height={60}
+              src="/images/logo-black.png"
+              alt="U1Dynamics"
+              width={140}
+              height={47}
               priority
-              className="h-12 w-auto transition-transform duration-300 group-hover:scale-105"
+              className="h-9 w-auto"
             />
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative px-4 py-2 rounded-sm text-sm font-semibold tracking-wide uppercase transition-all duration-300 ${
+                className={`text-sm font-medium transition-colors ${
                   pathname === link.href
-                    ? "text-u1-red"
-                    : "text-white/90 hover:text-white hover:bg-white/5"
+                    ? "text-gray-900"
+                    : "text-gray-400 hover:text-gray-900"
                 }`}
               >
                 {link.label}
                 {pathname === link.href && (
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-0.5 bg-u1-red rounded-full" />
+                  <span className="block h-0.5 bg-accent mt-0.5 rounded-full" />
                 )}
               </Link>
             ))}
-            <Link
-              href="/contact"
-              className="ml-4 px-6 py-2.5 bg-gradient-to-r from-[#E10600] to-[#b50500] text-white text-sm font-bold rounded-sm uppercase tracking-wider hover:shadow-lg hover:shadow-red-500/30 transition-all duration-300 hover:-translate-y-0.5"
-            >
-              Request Partnership
-            </Link>
           </nav>
 
-          {/* Mobile toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden text-white p-2 rounded-sm hover:bg-white/10 transition-colors"
-            aria-label="Toggle navigation menu"
+            className="md:hidden text-gray-600 p-2"
+            aria-label="Toggle menu"
           >
-            <svg
-              className="w-7 h-7"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {mobileOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               )}
             </svg>
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
       {mobileOpen && (
-        <div className="md:hidden glass-dark border-t border-white/5">
-          <div className="px-4 py-4 space-y-2">
+        <div className="md:hidden bg-white border-t border-gray-100">
+          <div className="px-4 py-3 space-y-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className={`block px-4 py-3 rounded-sm font-semibold uppercase tracking-wide transition-all duration-300 ${
+                className={`block px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
                   pathname === link.href
-                    ? "text-u1-red bg-white/5"
-                    : "text-white hover:text-u1-red hover:bg-white/5"
+                    ? "text-gray-900 bg-gray-50"
+                    : "text-gray-500 hover:text-gray-900 hover:bg-gray-50"
                 }`}
               >
                 {link.label}
               </Link>
             ))}
-            <Link
-              href="/contact"
-              onClick={() => setMobileOpen(false)}
-              className="block text-center mt-4 px-6 py-3 bg-gradient-to-r from-[#E10600] to-[#b50500] text-white font-bold rounded-sm uppercase tracking-wider"
-            >
-              Request Partnership
-            </Link>
           </div>
         </div>
       )}
