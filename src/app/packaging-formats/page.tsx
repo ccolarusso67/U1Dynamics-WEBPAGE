@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import BreadcrumbJsonLd from "@/app/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "Packaging Formats | Bottles, Pails, Drums, Totes & Custom Packaging",
@@ -57,6 +58,11 @@ const formats = [
 export default function PackagingFormatsPage() {
   return (
     <>
+      <BreadcrumbJsonLd items={[
+        { name: "Home", href: "/" },
+        { name: "Company", href: "/manufacturing-capabilities" },
+        { name: "Packaging Formats", href: "/packaging-formats" },
+      ]} />
       {/* Hero */}
       <section className="pt-28 pb-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

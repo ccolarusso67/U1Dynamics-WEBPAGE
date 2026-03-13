@@ -21,6 +21,8 @@ export const metadata: Metadata = {
 export default function TollBlendingLubricantsPage() {
   return (
     <ServicePageLayout
+      breadcrumbLabel="Toll Blending"
+      breadcrumbHref="/toll-blending-lubricants"
       badge="Toll Blending Services"
       title="Toll Blending for Lubricant Companies with Proprietary Formulations"
       subtitle="Bring your formula. We bring the facility, the equipment, and the expertise to blend it at scale with precision and consistency."

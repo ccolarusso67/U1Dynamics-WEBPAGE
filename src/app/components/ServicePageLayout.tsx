@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import BreadcrumbJsonLd from "./BreadcrumbJsonLd";
 
 interface CapabilityItem {
   title: string;
@@ -37,6 +38,9 @@ interface ServicePageLayoutProps {
   // CTA
   ctaTitle: string;
   ctaDescription: string;
+  // Breadcrumb
+  breadcrumbLabel: string;
+  breadcrumbHref: string;
   // Optional second section
   secondaryTitle?: string;
   secondaryDescription?: string;
@@ -62,13 +66,40 @@ export default function ServicePageLayout({
   faqs,
   ctaTitle,
   ctaDescription,
+  breadcrumbLabel,
+  breadcrumbHref,
   secondaryTitle,
   secondaryDescription,
   secondaryImage,
   secondaryImageAlt,
 }: ServicePageLayoutProps) {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", href: "/" },
+          { name: "Services", href: "/private-label-lubricants" },
+          { name: breadcrumbLabel, href: breadcrumbHref },
+        ]}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+
       {/* Hero */}
       <section className="relative pt-28 pb-20 bg-white overflow-hidden">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

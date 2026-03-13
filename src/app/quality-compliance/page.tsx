@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import BreadcrumbJsonLd from "@/app/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "Quality & Compliance | Testing, Standards & Quality Assurance",
@@ -80,6 +81,11 @@ const standards = [
 export default function QualityCompliancePage() {
   return (
     <>
+      <BreadcrumbJsonLd items={[
+        { name: "Home", href: "/" },
+        { name: "Company", href: "/manufacturing-capabilities" },
+        { name: "Quality & Compliance", href: "/quality-compliance" },
+      ]} />
       {/* Hero */}
       <section className="pt-28 pb-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

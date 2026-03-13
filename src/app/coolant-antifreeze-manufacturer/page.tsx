@@ -21,6 +21,8 @@ export const metadata: Metadata = {
 export default function CoolantAntifreezeManufacturerPage() {
   return (
     <ServicePageLayout
+      breadcrumbLabel="Coolant & Antifreeze"
+      breadcrumbHref="/coolant-antifreeze-manufacturer"
       badge="Coolant Manufacturing"
       title="Coolant and Antifreeze Manufacturing for Every Application"
       subtitle="From extended life automotive coolants to heavy-duty antifreeze formulations, we manufacture and package coolant products that meet the demands of modern engines and equipment."

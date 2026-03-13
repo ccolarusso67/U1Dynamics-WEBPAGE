@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import BreadcrumbJsonLd from "@/app/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "Houston Texas Manufacturing Facility | Pasadena TX Lubricant Plant",
@@ -70,8 +71,49 @@ const advantages = [
 ];
 
 export default function HoustonTexasFacilityPage() {
+  const localBusinessJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": "https://u1dynamics.com/#facility",
+    name: "U1Dynamics Manufacturing LLC — Pasadena Facility",
+    description:
+      "95,000 sq ft lubricant manufacturing facility specializing in blending, filling, packaging, and warehousing of automotive and industrial lubricants.",
+    url: "https://u1dynamics.com/houston-texas-facility",
+    telephone: "+18886878521",
+    email: "info@u1dynamics.com",
+    image: "https://u1dynamics.com/images/facility/aerial-hero.jpg",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "4468 Genoa Red Bluff Road",
+      addressLocality: "Pasadena",
+      addressRegion: "TX",
+      postalCode: "77505",
+      addressCountry: "US",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 29.6633,
+      longitude: -95.1513,
+    },
+    openingHoursSpecification: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "08:00",
+      closes: "17:00",
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+      />
+      <BreadcrumbJsonLd items={[
+        { name: "Home", href: "/" },
+        { name: "Company", href: "/manufacturing-capabilities" },
+        { name: "Houston Facility", href: "/houston-texas-facility" },
+      ]} />
       {/* Hero with Aerial Image */}
       <section className="relative pt-28 pb-20 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

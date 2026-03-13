@@ -20,6 +20,8 @@ export const metadata: Metadata = {
 export default function ContractLubricantManufacturingPage() {
   return (
     <ServicePageLayout
+      breadcrumbLabel="Contract Manufacturing"
+      breadcrumbHref="/contract-lubricant-manufacturing"
       badge="Contract Manufacturing"
       title="Contract Lubricant Manufacturing Built for Scale and Precision"
       subtitle="For brands that need reliable production capacity without building their own plant, U1Dynamics offers contract manufacturing with the quality, flexibility, and speed your business demands."

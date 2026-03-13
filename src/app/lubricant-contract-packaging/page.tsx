@@ -21,6 +21,8 @@ export const metadata: Metadata = {
 export default function LubricantContractPackagingPage() {
   return (
     <ServicePageLayout
+      breadcrumbLabel="Contract Packaging"
+      breadcrumbHref="/lubricant-contract-packaging"
       badge="Contract Packaging"
       title="Lubricant Contract Packaging from Quarts to Flexibags"
       subtitle="Our filling facility handles diverse packaging formats with automated lines built for speed, accuracy, and flexibility."

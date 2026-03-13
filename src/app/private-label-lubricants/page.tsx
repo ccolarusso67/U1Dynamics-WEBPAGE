@@ -21,6 +21,8 @@ export const metadata: Metadata = {
 export default function PrivateLabelLubricantsPage() {
   return (
     <ServicePageLayout
+      breadcrumbLabel="Private Label Lubricants"
+      breadcrumbHref="/private-label-lubricants"
       badge="Private Label Manufacturing"
       title="Private Label Lubricants Manufactured in Texas for Brands Ready to Scale"
       subtitle="Whether you are launching a new lubricant line or scaling an existing brand, U1Dynamics provides full-service private label manufacturing from formulation to fulfillment."

@@ -21,6 +21,8 @@ export const metadata: Metadata = {
 export default function IndustrialFluidManufacturingPage() {
   return (
     <ServicePageLayout
+      breadcrumbLabel="Industrial Fluids"
+      breadcrumbHref="/industrial-fluid-manufacturing"
       badge="Industrial Fluids"
       title="Industrial Fluid Manufacturing for Demanding Applications"
       subtitle="Hydraulic oils, compressor oils, metalworking fluids, and specialty industrial formulations manufactured to your specifications at our Pasadena, Texas facility."

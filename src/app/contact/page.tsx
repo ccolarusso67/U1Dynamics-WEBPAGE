@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { decodeEmail } from "../components/EmailLink";
+import BreadcrumbJsonLd from "@/app/components/BreadcrumbJsonLd";
 
 export default function ContactPage() {
   const [email, setEmail] = useState("");
@@ -32,8 +33,60 @@ export default function ContactPage() {
     setSubmitted(true);
   };
 
+  const localBusinessJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": "https://u1dynamics.com/#organization",
+    name: "U1Dynamics Manufacturing LLC",
+    description:
+      "U.S.-based lubricant blending, contract filling, and private label manufacturing facility.",
+    url: "https://u1dynamics.com",
+    telephone: "+18886878521",
+    email: "info@u1dynamics.com",
+    image: "https://u1dynamics.com/images/facility/aerial-hero.jpg",
+    address: [
+      {
+        "@type": "PostalAddress",
+        name: "Manufacturing Facility",
+        streetAddress: "4468 Genoa Red Bluff Road",
+        addressLocality: "Pasadena",
+        addressRegion: "TX",
+        postalCode: "77505",
+        addressCountry: "US",
+      },
+      {
+        "@type": "PostalAddress",
+        name: "Corporate Offices",
+        streetAddress: "1600 Ponce De Leon Blvd STE 1108",
+        addressLocality: "Coral Gables",
+        addressRegion: "FL",
+        postalCode: "33134",
+        addressCountry: "US",
+      },
+    ],
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 29.6633,
+      longitude: -95.1513,
+    },
+    openingHoursSpecification: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "08:00",
+      closes: "17:00",
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+      />
+      <BreadcrumbJsonLd items={[
+        { name: "Home", href: "/" },
+        { name: "Contact", href: "/contact" },
+      ]} />
       {/* Header */}
       <section className="pt-28 pb-12 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

@@ -21,6 +21,7 @@ const companyLinks = [
   { href: "/quality-compliance", label: "Quality & Compliance" },
   { href: "/packaging-formats", label: "Packaging Formats" },
   { href: "/export-logistics", label: "Export & Logistics" },
+  { href: "/technical-documents", label: "Technical Documents" },
 ];
 
 export default function Header() {

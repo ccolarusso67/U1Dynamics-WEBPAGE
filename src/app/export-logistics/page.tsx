@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import BreadcrumbJsonLd from "@/app/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "Export & Logistics | International Lubricant Shipping & Distribution",
@@ -47,6 +48,11 @@ const services = [
 export default function ExportLogisticsPage() {
   return (
     <>
+      <BreadcrumbJsonLd items={[
+        { name: "Home", href: "/" },
+        { name: "Company", href: "/manufacturing-capabilities" },
+        { name: "Export & Logistics", href: "/export-logistics" },
+      ]} />
       {/* Hero */}
       <section className="pt-28 pb-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

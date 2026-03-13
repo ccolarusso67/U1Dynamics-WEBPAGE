@@ -21,6 +21,8 @@ export const metadata: Metadata = {
 export default function DieselExhaustFluidManufacturerPage() {
   return (
     <ServicePageLayout
+      breadcrumbLabel="DEF Manufacturing"
+      breadcrumbHref="/diesel-exhaust-fluid-manufacturer"
       badge="DEF Manufacturing"
       title="Diesel Exhaust Fluid Manufacturing for Brands and Distributors"
       subtitle="ISO 22241 compliant DEF manufactured, packaged, and shipped from our Pasadena, Texas facility. From 2.5-gallon jugs to bulk totes, we supply the formats your customers need."
