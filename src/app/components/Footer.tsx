@@ -2,11 +2,31 @@ import Image from "next/image";
 import Link from "next/link";
 import EmailLink from "./EmailLink";
 
+const serviceLinks = [
+  { href: "/private-label-lubricants", label: "Private Label Lubricants" },
+  { href: "/contract-lubricant-manufacturing", label: "Contract Manufacturing" },
+  { href: "/toll-blending-lubricants", label: "Toll Blending" },
+  { href: "/lubricant-contract-packaging", label: "Contract Packaging" },
+  { href: "/diesel-exhaust-fluid-manufacturer", label: "DEF Manufacturing" },
+  { href: "/coolant-antifreeze-manufacturer", label: "Coolant & Antifreeze" },
+  { href: "/industrial-fluid-manufacturing", label: "Industrial Fluids" },
+];
+
+const companyLinks = [
+  { href: "/manufacturing-capabilities", label: "Manufacturing Capabilities" },
+  { href: "/houston-texas-facility", label: "Houston Facility" },
+  { href: "/quality-compliance", label: "Quality & Compliance" },
+  { href: "/packaging-formats", label: "Packaging Formats" },
+  { href: "/export-logistics", label: "Export & Logistics" },
+  { href: "/products", label: "Products" },
+  { href: "/contact", label: "Contact" },
+];
+
 export default function Footer() {
   return (
     <footer className="bg-gray-50 border-t border-gray-200">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div>
             <Image
@@ -29,20 +49,27 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Links */}
+          {/* Services */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-900 mb-4">Quick Links</h3>
-            <ul className="space-y-2.5">
-              {[
-                { href: "/", label: "Home" },
-                { href: "/products", label: "Products" },
-                { href: "/contact", label: "Contact" },
-              ].map((link) => (
+            <h3 className="text-sm font-semibold text-gray-900 mb-4">Services</h3>
+            <ul className="space-y-2">
+              {serviceLinks.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-gray-400 hover:text-gray-900 transition-colors text-sm"
-                  >
+                  <Link href={link.href} className="text-gray-400 hover:text-gray-900 transition-colors text-sm">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h3 className="text-sm font-semibold text-gray-900 mb-4">Company</h3>
+            <ul className="space-y-2">
+              {companyLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-gray-400 hover:text-gray-900 transition-colors text-sm">
                     {link.label}
                   </Link>
                 </li>

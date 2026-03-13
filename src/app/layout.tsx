@@ -150,6 +150,7 @@ export default function RootLayout({
                     "@type": "Service",
                     name: "Contract Lubricant Manufacturing",
                     description: "Formulation blending, production scale-up, quality control, packaging, filling, and logistics coordination.",
+                    url: "https://u1dynamics.com/contract-lubricant-manufacturing",
                   },
                 },
                 {
@@ -158,6 +159,25 @@ export default function RootLayout({
                     "@type": "Service",
                     name: "Private Label Lubricant Manufacturing",
                     description: "Engine oils, gear oils, transmission fluids, hydraulic oils, and specialty lubricants under your brand.",
+                    url: "https://u1dynamics.com/private-label-lubricants",
+                  },
+                },
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "Toll Blending Services",
+                    description: "Custom formulation blending for lubricant companies with proprietary formulas.",
+                    url: "https://u1dynamics.com/toll-blending-lubricants",
+                  },
+                },
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "Lubricant Contract Packaging",
+                    description: "Contract filling and packaging in quarts, gallons, pails, drums, totes, and flexibags.",
+                    url: "https://u1dynamics.com/lubricant-contract-packaging",
                   },
                 },
                 {
@@ -166,6 +186,7 @@ export default function RootLayout({
                     "@type": "Service",
                     name: "DEF Manufacturing",
                     description: "ISO 22241 compliant diesel exhaust fluid in bulk, tote, drum, and retail packaging formats.",
+                    url: "https://u1dynamics.com/diesel-exhaust-fluid-manufacturer",
                   },
                 },
                 {
@@ -174,6 +195,16 @@ export default function RootLayout({
                     "@type": "Service",
                     name: "Coolant & Antifreeze Manufacturing",
                     description: "Extended life coolants, heavy-duty antifreeze, and universal coolant technologies.",
+                    url: "https://u1dynamics.com/coolant-antifreeze-manufacturer",
+                  },
+                },
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "Industrial Fluid Manufacturing",
+                    description: "Hydraulic oils, compressor oils, metalworking fluids, and specialty industrial formulations.",
+                    url: "https://u1dynamics.com/industrial-fluid-manufacturing",
                   },
                 },
               ],
