@@ -41,7 +41,7 @@ public class QBWebConnectorService : IQBWebConnectorService
         if (strUserName != expectedUser || strPassword != expectedPass)
         {
             _logger.LogWarning("Authentication failed for user: {User}", strUserName);
-            return new[] { "", "nvu" }; // "nvu" = not valid user
+            return new[] { "", "nvu" };
         }
 
         var ticket = Guid.NewGuid().ToString();
@@ -51,11 +51,11 @@ public class QBWebConnectorService : IQBWebConnectorService
         var pendingJobs = _jobManager.GetPendingJobs();
         if (!pendingJobs.Any())
         {
-            _logger.LogInformation("No pending sync jobs. Returning 'none'.");
+            _logger.LogInformation("No pending sync jobs.");
             return new[] { ticket, "none" };
         }
 
-        var session = new SyncSession(ticket, pendingJobs);
+        var session = new SyncSession(ticket, pendingJobs, _logger);
         _sessions[ticket] = session;
 
         _logger.LogInformation(
@@ -83,8 +83,8 @@ public class QBWebConnectorService : IQBWebConnectorService
         }
 
         _logger.LogInformation(
-            "Session {Ticket}: Sending request for job {Job}",
-            ticket, session.CurrentJob?.Name);
+            "Session {Ticket}: Sending request for job {Job} (request {Idx}/{Total})",
+            ticket, session.CurrentJob?.Name, session.CurrentRequestIndex + 1, session.CurrentRequestCount);
 
         return request;
     }
@@ -106,19 +106,18 @@ public class QBWebConnectorService : IQBWebConnectorService
         }
         else
         {
-            // Process the response through the current sync job
-            _ = Task.Run(async () =>
+            // Process the response SYNCHRONOUSLY — QBWC expects processing to
+            // complete before the next sendRequestXML call
+            try
             {
-                try
-                {
-                    await session.ProcessResponse(response);
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogError(ex, "Error processing response for job {Job}",
-                        session.CurrentJob?.Name);
-                }
-            });
+                session.ProcessResponse(response).GetAwaiter().GetResult();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error processing response for job {Job}",
+                    session.CurrentJob?.Name);
+                session.MarkCurrentJobError(ex.Message);
+            }
         }
 
         // Return percentage complete (0-100). -1 = error.
@@ -129,7 +128,12 @@ public class QBWebConnectorService : IQBWebConnectorService
     {
         _logger.LogError("Connection error for {Ticket}: {HResult} - {Message}",
             ticket, hresult, message);
-        _sessions.TryRemove(ticket, out _);
+
+        if (_sessions.TryRemove(ticket, out var session))
+        {
+            session.LastError = $"{hresult} - {message}";
+        }
+
         return "done";
     }
 
@@ -150,29 +154,59 @@ public class QBWebConnectorService : IQBWebConnectorService
 
 /// <summary>
 /// Tracks the state of a single QBWC sync session.
+/// The QBWC protocol is strictly sequential:
+///   1. sendRequestXML → returns qbXML request N
+///   2. QB processes request N → returns response N
+///   3. receiveResponseXML → processes response N, advances to N+1
+///   4. Repeat from step 1
 /// </summary>
 public class SyncSession
 {
     public string Ticket { get; }
     public ISyncJob? CurrentJob => _jobIndex < _jobs.Count ? _jobs[_jobIndex] : null;
-    public string? LastError { get; private set; }
-    public int PercentComplete => _jobs.Count > 0
-        ? (int)((double)_completedJobs / _jobs.Count * 100)
-        : 100;
+    public string? LastError { get; set; }
+    public int CurrentRequestIndex => _requestIndex;
+    public int CurrentRequestCount => CurrentJob?.GetQbXmlRequests().Count ?? 0;
+
+    public int PercentComplete
+    {
+        get
+        {
+            if (_totalRequests == 0) return 100;
+            return (int)((double)_completedRequests / _totalRequests * 100);
+        }
+    }
 
     private readonly List<ISyncJob> _jobs;
+    private readonly ILogger _logger;
     private int _jobIndex;
     private int _requestIndex;
-    private int _completedJobs;
+    private int _completedRequests;
+    private readonly int _totalRequests;
+    private bool _waitingForResponse;
 
-    public SyncSession(string ticket, List<ISyncJob> jobs)
+    public SyncSession(string ticket, List<ISyncJob> jobs, ILogger logger)
     {
         Ticket = ticket;
         _jobs = jobs;
+        _logger = logger;
+
+        // Pre-calculate total request count for accurate progress
+        _totalRequests = jobs.Sum(j => j.GetQbXmlRequests().Count);
     }
 
+    /// <summary>
+    /// Called by sendRequestXML. Returns the next qbXML request to send to QB.
+    /// Returns null when all jobs are complete.
+    /// </summary>
     public string? GetNextRequest()
     {
+        // Safety: if we're still waiting for a response, don't advance
+        if (_waitingForResponse)
+        {
+            _logger.LogWarning("GetNextRequest called while still waiting for response");
+        }
+
         while (_jobIndex < _jobs.Count)
         {
             var job = _jobs[_jobIndex];
@@ -180,30 +214,47 @@ public class SyncSession
 
             if (_requestIndex < requests.Count)
             {
+                _waitingForResponse = true;
                 return requests[_requestIndex];
             }
 
-            // Move to next job
+            // Current job has no more requests — move to next job
             _jobIndex++;
             _requestIndex = 0;
-            _completedJobs++;
         }
         return null;
     }
 
+    /// <summary>
+    /// Called by receiveResponseXML SYNCHRONOUSLY. Processes the QB response
+    /// and advances the request index for the next sendRequestXML call.
+    /// </summary>
     public async Task ProcessResponse(string responseXml)
     {
         if (CurrentJob != null)
         {
             await CurrentJob.ProcessResponseAsync(responseXml);
             _requestIndex++;
+            _completedRequests++;
+            _waitingForResponse = false;
+
+            _logger.LogInformation("Job {Job}: processed response {Idx}",
+                CurrentJob?.Name ?? "(done)", _requestIndex);
         }
     }
 
     public void MarkCurrentJobError(string error)
     {
         LastError = error;
+        _logger.LogWarning("Job {Job} failed: {Error}. Skipping to next job.",
+            CurrentJob?.Name, error);
+
+        // Skip remaining requests for this job
+        var remaining = CurrentJob?.GetQbXmlRequests().Count ?? 0;
+        _completedRequests += remaining - _requestIndex;
+
         _jobIndex++;
         _requestIndex = 0;
+        _waitingForResponse = false;
     }
 }

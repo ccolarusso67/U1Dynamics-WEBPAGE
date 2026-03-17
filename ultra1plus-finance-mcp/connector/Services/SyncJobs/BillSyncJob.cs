@@ -1,5 +1,6 @@
 using System.Xml.Linq;
 using Npgsql;
+using NpgsqlTypes;
 
 namespace U1PFinanceSync.Services.SyncJobs;
 
@@ -53,8 +54,8 @@ public class BillSyncJob : ISyncJob
             var vendorId = bill.Element("VendorRef")?.Element("ListID")?.Value;
             var vendorName = bill.Element("VendorRef")?.Element("FullName")?.Value ?? "";
             var refNumber = bill.Element("RefNumber")?.Value;
-            var txnDate = bill.Element("TxnDate")?.Value;
-            var dueDate = bill.Element("DueDate")?.Value;
+            var txnDate = ParseDate(bill.Element("TxnDate")?.Value);
+            var dueDate = ParseDate(bill.Element("DueDate")?.Value);
             var amount = ParseDecimal(bill.Element("AmountDue")?.Value);
             var balanceRemaining = ParseDecimal(bill.Element("OpenAmount")?.Value);
             var isPaid = balanceRemaining == 0 && amount > 0;
@@ -63,8 +64,8 @@ public class BillSyncJob : ISyncJob
             await using var cmd = new NpgsqlCommand(@"
                 INSERT INTO bills (txn_id, vendor_id, vendor_name, ref_number, txn_date,
                     due_date, amount, balance_remaining, is_paid, memo, last_synced_at)
-                VALUES (@txnId, @vendorId, @vendorName, @ref, @txnDate::date,
-                    @dueDate::date, @amount, @balance, @isPaid, @memo, NOW())
+                VALUES (@txnId, @vendorId, @vendorName, @ref, @txnDate,
+                    @dueDate, @amount, @balance, @isPaid, @memo, NOW())
                 ON CONFLICT (txn_id) DO UPDATE SET
                     vendor_name = EXCLUDED.vendor_name,
                     balance_remaining = EXCLUDED.balance_remaining,
@@ -76,8 +77,8 @@ public class BillSyncJob : ISyncJob
             cmd.Parameters.AddWithValue("vendorId", (object?)vendorId ?? DBNull.Value);
             cmd.Parameters.AddWithValue("vendorName", vendorName);
             cmd.Parameters.AddWithValue("ref", (object?)refNumber ?? DBNull.Value);
-            cmd.Parameters.AddWithValue("txnDate", (object?)txnDate ?? DBNull.Value);
-            cmd.Parameters.AddWithValue("dueDate", (object?)dueDate ?? DBNull.Value);
+            cmd.Parameters.Add(new NpgsqlParameter("txnDate", NpgsqlDbType.Date) { Value = (object?)txnDate ?? DBNull.Value });
+            cmd.Parameters.Add(new NpgsqlParameter("dueDate", NpgsqlDbType.Date) { Value = (object?)dueDate ?? DBNull.Value });
             cmd.Parameters.AddWithValue("amount", amount);
             cmd.Parameters.AddWithValue("balance", balanceRemaining);
             cmd.Parameters.AddWithValue("isPaid", isPaid);
@@ -99,4 +100,7 @@ public class BillSyncJob : ISyncJob
 
     private static decimal ParseDecimal(string? value) =>
         decimal.TryParse(value, out var result) ? result : 0m;
+
+    private static DateOnly? ParseDate(string? value) =>
+        DateOnly.TryParse(value, out var result) ? result : null;
 }

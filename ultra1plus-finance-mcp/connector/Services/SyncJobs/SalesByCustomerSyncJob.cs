@@ -1,5 +1,6 @@
 using System.Xml.Linq;
 using Npgsql;
+using NpgsqlTypes;
 
 namespace U1PFinanceSync.Services.SyncJobs;
 
@@ -57,8 +58,14 @@ public class SalesByCustomerSyncJob : ISyncJob
 
         // Extract period from report
         var reportPeriod = reportRet.Element("ReportPeriod");
-        var periodStart = reportPeriod?.Element("FromReportDate")?.Value ?? "";
-        var periodEnd = reportPeriod?.Element("ToReportDate")?.Value ?? "";
+        var periodStartStr = reportPeriod?.Element("FromReportDate")?.Value;
+        var periodEndStr = reportPeriod?.Element("ToReportDate")?.Value;
+        if (string.IsNullOrWhiteSpace(periodStartStr) || string.IsNullOrWhiteSpace(periodEndStr))
+            return; // Can't insert without valid dates
+
+        if (!DateOnly.TryParse(periodStartStr, out var periodStart) ||
+            !DateOnly.TryParse(periodEndStr, out var periodEnd))
+            return; // Can't insert with unparseable dates
 
         var recordCount = 0;
 
@@ -88,7 +95,7 @@ public class SalesByCustomerSyncJob : ISyncJob
                 INSERT INTO sales_by_customer
                     (customer_id, customer_name, period_start, period_end,
                      sales_amount, cogs_amount, gross_margin, order_count, snapshot_at)
-                VALUES (@custId, @name, @pStart::date, @pEnd::date,
+                VALUES (@custId, @name, @pStart, @pEnd,
                     @sales, 0, 0, 0, NOW())
                 ON CONFLICT (customer_id, period_start, period_end) DO UPDATE SET
                     customer_name = EXCLUDED.customer_name,
@@ -98,8 +105,8 @@ public class SalesByCustomerSyncJob : ISyncJob
 
             cmd.Parameters.AddWithValue("custId", (object?)customerId ?? DBNull.Value);
             cmd.Parameters.AddWithValue("name", customerName);
-            cmd.Parameters.AddWithValue("pStart", periodStart);
-            cmd.Parameters.AddWithValue("pEnd", periodEnd);
+            cmd.Parameters.Add(new NpgsqlParameter("pStart", NpgsqlDbType.Date) { Value = periodStart });
+            cmd.Parameters.Add(new NpgsqlParameter("pEnd", NpgsqlDbType.Date) { Value = periodEnd });
             cmd.Parameters.AddWithValue("sales", salesAmount);
 
             await cmd.ExecuteNonQueryAsync();

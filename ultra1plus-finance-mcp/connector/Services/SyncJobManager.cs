@@ -71,23 +71,31 @@ public class SyncJobManager
     {
         var pending = new List<ISyncJob>();
         var schedules = _config.GetSection("SyncSchedule");
+        var now = DateTime.UtcNow;
 
-        foreach (var (name, job) in _jobs)
+        // Customer sync must run first if pending (other jobs reference customer_id FK)
+        var orderedJobs = _jobs.OrderBy(kvp => kvp.Key == "customer_sync" ? 0 : 1);
+
+        foreach (var (name, job) in orderedJobs)
         {
             var cronExpr = schedules[ScheduleKeyForJob(name)];
             if (cronExpr == null) continue;
 
-            var lastRun = _lastRunTimes.GetValueOrDefault(name, DateTime.MinValue);
+            var lastRun = _lastRunTimes.GetValueOrDefault(name, DateTime.UtcNow.AddDays(-1));
             var cron = Cronos.CronExpression.Parse(cronExpr);
-            var nextRun = cron.GetNextOccurrence(lastRun, TimeZoneInfo.Local);
+            // Cronos works in UTC when given UTC DateTimes
+            var nextRun = cron.GetNextOccurrence(lastRun, TimeZoneInfo.Utc);
 
-            if (nextRun.HasValue && nextRun.Value <= DateTime.UtcNow)
+            if (nextRun.HasValue && nextRun.Value <= now)
             {
                 pending.Add(job);
-                _lastRunTimes[name] = DateTime.UtcNow;
+                _lastRunTimes[name] = now;
+                _logger.LogInformation("Job {Job} is due (last ran: {LastRun}, next was: {NextRun})",
+                    name, lastRun, nextRun.Value);
             }
         }
 
+        _logger.LogInformation("{Count} of {Total} jobs pending", pending.Count, _jobs.Count);
         return pending;
     }
 

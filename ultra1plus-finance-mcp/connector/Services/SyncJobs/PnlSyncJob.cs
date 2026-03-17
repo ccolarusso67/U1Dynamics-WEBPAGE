@@ -1,5 +1,6 @@
 using System.Xml.Linq;
 using Npgsql;
+using NpgsqlTypes;
 
 namespace U1PFinanceSync.Services.SyncJobs;
 
@@ -64,10 +65,10 @@ public class PnlSyncJob : ISyncJob
         // Extract the report period from the response
         var reportPeriod = reportRet.Element("ReportPeriod");
         var fromDate = reportPeriod?.Element("FromReportDate")?.Value;
-        if (fromDate == null) return;
+        if (string.IsNullOrWhiteSpace(fromDate)) return;
 
         // Parse the month from the period start
-        var month = DateTime.Parse(fromDate);
+        if (!DateTime.TryParse(fromDate, out var month)) return;
         var monthStart = new DateTime(month.Year, month.Month, 1);
 
         // Parse report rows to extract key P&L figures
@@ -124,7 +125,7 @@ public class PnlSyncJob : ISyncJob
                 snapshot_at = NOW()
         ", conn);
 
-        cmd.Parameters.AddWithValue("month", monthStart);
+        cmd.Parameters.Add(new NpgsqlParameter("month", NpgsqlDbType.Date) { Value = DateOnly.FromDateTime(monthStart) });
         cmd.Parameters.AddWithValue("income", income);
         cmd.Parameters.AddWithValue("cogs", cogs);
         cmd.Parameters.AddWithValue("gross", grossProfit);

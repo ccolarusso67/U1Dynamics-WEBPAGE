@@ -54,7 +54,7 @@ public class PaymentSyncJob : ISyncJob
         {
             var txnId = pmt.Element("TxnID")?.Value ?? "";
             var customerId = pmt.Element("CustomerRef")?.Element("ListID")?.Value;
-            var paymentDate = pmt.Element("TxnDate")?.Value;
+            var paymentDate = ParseDate(pmt.Element("TxnDate")?.Value);
             var amount = ParseDecimal(pmt.Element("TotalAmount")?.Value);
             var refNumber = pmt.Element("RefNumber")?.Value;
             var paymentMethod = pmt.Element("PaymentMethodRef")?.Element("FullName")?.Value;
@@ -77,7 +77,7 @@ public class PaymentSyncJob : ISyncJob
             await using var cmd = new NpgsqlCommand(@"
                 INSERT INTO payments (txn_id, customer_id, payment_date, amount, ref_number,
                     payment_method, deposit_to, memo, applied_invoice_refs, last_synced_at)
-                VALUES (@txnId, @custId, @date::date, @amount, @ref, @method,
+                VALUES (@txnId, @custId, @date, @amount, @ref, @method,
                     @deposit, @memo, @applied::jsonb, NOW())
                 ON CONFLICT (txn_id) DO UPDATE SET
                     amount = EXCLUDED.amount,
@@ -89,7 +89,7 @@ public class PaymentSyncJob : ISyncJob
 
             cmd.Parameters.AddWithValue("txnId", txnId);
             cmd.Parameters.AddWithValue("custId", (object?)customerId ?? DBNull.Value);
-            cmd.Parameters.AddWithValue("date", (object?)paymentDate ?? DBNull.Value);
+            cmd.Parameters.Add(new NpgsqlParameter("date", NpgsqlDbType.Date) { Value = (object?)paymentDate ?? DBNull.Value });
             cmd.Parameters.AddWithValue("amount", amount);
             cmd.Parameters.AddWithValue("ref", (object?)refNumber ?? DBNull.Value);
             cmd.Parameters.AddWithValue("method", (object?)paymentMethod ?? DBNull.Value);
@@ -113,4 +113,7 @@ public class PaymentSyncJob : ISyncJob
 
     private static decimal ParseDecimal(string? value) =>
         decimal.TryParse(value, out var result) ? result : 0m;
+
+    private static DateOnly? ParseDate(string? value) =>
+        DateOnly.TryParse(value, out var result) ? result : null;
 }

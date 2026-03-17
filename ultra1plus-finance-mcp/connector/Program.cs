@@ -26,7 +26,7 @@ var app = builder.Build();
 ((IEndpointRouteBuilder)app).UseSoapEndpoint<IQBWebConnectorService>(
     "/qbwc",
     new SoapEncoderOptions(),
-    SoapSerializer.DataContractSerializer
+    SoapSerializer.XmlSerializer
 );
 
 app.MapGet("/health", () => Results.Ok(new { status = "healthy", service = "U1PFinanceSync" }));

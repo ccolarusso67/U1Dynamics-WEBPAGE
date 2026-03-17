@@ -1,5 +1,6 @@
 using System.Xml.Linq;
 using Npgsql;
+using NpgsqlTypes;
 
 namespace U1PFinanceSync.Services.SyncJobs;
 
@@ -53,9 +54,9 @@ public class InvoiceSyncJob : ISyncJob
             var txnId = inv.Element("TxnID")?.Value ?? "";
             var refNumber = inv.Element("RefNumber")?.Value;
             var customerId = inv.Element("CustomerRef")?.Element("ListID")?.Value;
-            var txnDate = inv.Element("TxnDate")?.Value;
-            var dueDate = inv.Element("DueDate")?.Value;
-            var shipDate = inv.Element("ShipDate")?.Value;
+            var txnDate = ParseDate(inv.Element("TxnDate")?.Value);
+            var dueDate = ParseDate(inv.Element("DueDate")?.Value);
+            var shipDate = ParseDate(inv.Element("ShipDate")?.Value);
             var amount = decimal.Parse(inv.Element("Subtotal")?.Value ?? "0");
             var balanceRemaining = decimal.Parse(inv.Element("BalanceRemaining")?.Value ?? "0");
             var isPaid = balanceRemaining == 0;
@@ -67,8 +68,8 @@ public class InvoiceSyncJob : ISyncJob
             await using var cmd = new NpgsqlCommand(@"
                 INSERT INTO invoices (txn_id, ref_number, customer_id, txn_date, due_date,
                     ship_date, amount, balance_remaining, is_paid, terms, po_number, memo, last_synced_at)
-                VALUES (@txnId, @refNumber, @customerId, @txnDate::date, @dueDate::date,
-                    @shipDate::date, @amount, @balance, @isPaid, @terms, @po, @memo, NOW())
+                VALUES (@txnId, @refNumber, @customerId, @txnDate, @dueDate,
+                    @shipDate, @amount, @balance, @isPaid, @terms, @po, @memo, NOW())
                 ON CONFLICT (txn_id) DO UPDATE SET
                     ref_number = EXCLUDED.ref_number,
                     balance_remaining = EXCLUDED.balance_remaining,
@@ -79,9 +80,9 @@ public class InvoiceSyncJob : ISyncJob
             cmd.Parameters.AddWithValue("txnId", txnId);
             cmd.Parameters.AddWithValue("refNumber", (object?)refNumber ?? DBNull.Value);
             cmd.Parameters.AddWithValue("customerId", (object?)customerId ?? DBNull.Value);
-            cmd.Parameters.AddWithValue("txnDate", (object?)txnDate ?? DBNull.Value);
-            cmd.Parameters.AddWithValue("dueDate", (object?)dueDate ?? DBNull.Value);
-            cmd.Parameters.AddWithValue("shipDate", (object?)shipDate ?? DBNull.Value);
+            cmd.Parameters.Add(new NpgsqlParameter("txnDate", NpgsqlDbType.Date) { Value = (object?)txnDate ?? DBNull.Value });
+            cmd.Parameters.Add(new NpgsqlParameter("dueDate", NpgsqlDbType.Date) { Value = (object?)dueDate ?? DBNull.Value });
+            cmd.Parameters.Add(new NpgsqlParameter("shipDate", NpgsqlDbType.Date) { Value = (object?)shipDate ?? DBNull.Value });
             cmd.Parameters.AddWithValue("amount", amount);
             cmd.Parameters.AddWithValue("balance", balanceRemaining);
             cmd.Parameters.AddWithValue("isPaid", isPaid);
@@ -146,4 +147,7 @@ public class InvoiceSyncJob : ISyncJob
         statusCmd.Parameters.AddWithValue("count", invoiceRets.Count());
         await statusCmd.ExecuteNonQueryAsync();
     }
+
+    private static DateOnly? ParseDate(string? value) =>
+        DateOnly.TryParse(value, out var result) ? result : null;
 }
