@@ -1,220 +1,171 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Inter, Archivo_Narrow, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const sans = Inter({
   subsets: ["latin"],
+  display: "swap",
+  variable: "--font-sans-var",
+  weight: ["300", "400", "500", "600", "700"],
 });
 
+const display = Archivo_Narrow({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-display-var",
+  weight: ["400", "500", "600", "700"],
+});
+
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-mono-var",
+  weight: ["400", "500", "600"],
+});
+
+const siteUrl = "https://www.u1dynamics.com";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://u1dynamics.com"),
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "U1Dynamics Manufacturing | Lubricant Blending & Private Label Manufacturing",
-    template: "%s | U1Dynamics Manufacturing LLC",
+    default: "U1Dynamics · Lubricant Blending & Private Label Manufacturing · Pasadena, TX",
+    template: "%s · U1Dynamics",
   },
   description:
-    "U1Dynamics Manufacturing LLC is a U.S.-based lubricant blending, contract filling, and private label manufacturing facility in Pasadena, Texas. Engine oils, gear oils, DEF, coolants, and industrial fluids.",
+    "U1Dynamics is a 95,000 sq ft lubricant blending and contract filling platform in Pasadena, Texas. Private label motor oil, DEF, coolants and specialty fluids — shipped to 38+ markets.",
   keywords: [
-    "lubricant manufacturer",
-    "contract lubricant blending",
-    "private label lubricants",
-    "lubricant blending facility",
-    "contract filling services",
-    "DEF manufacturer",
-    "coolant manufacturer",
-    "engine oil manufacturer",
-    "gear oil blending",
-    "hydraulic oil manufacturer",
-    "Pasadena Texas manufacturing",
+    "lubricant blending",
+    "contract packaging",
+    "private label motor oil",
+    "specialty fluids manufacturer",
+    "Pasadena lubricant manufacturer",
     "Houston lubricant manufacturer",
-    "Ultra1Plus",
-    "U1Dynamics",
+    "custom formulation",
+    "contract blending Texas",
+    "DEF manufacturer",
+    "hydraulic fluid blender",
+    "private label lubricants",
   ],
-  alternates: {
-    canonical: "/",
-  },
+  authors: [{ name: "U1Dynamics Manufacturing LLC" }],
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "U1Dynamics Manufacturing | Lubricant Blending & Private Label Manufacturing",
-    description:
-      "U.S.-based lubricant blending, contract filling, and private label manufacturing. Engine oils, gear oils, DEF, coolants, and industrial fluids from our 95,000 sq ft facility in Pasadena, Texas.",
-    url: "https://u1dynamics.com",
-    siteName: "U1Dynamics Manufacturing LLC",
-    locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: "/images/product-lineup.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Ultra1Plus Premium Quality Oils by U1Dynamics Manufacturing",
-      },
-    ],
+    siteName: "U1Dynamics",
+    title: "U1Dynamics · Lubricant Blending & Private Label Manufacturing",
+    description:
+      "State-of-the-art lubricant blending and contract packaging facility. Private label motor oil, specialty fluids and custom formulations — shipped worldwide from Pasadena, TX.",
+    url: siteUrl,
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "U1Dynamics Pasadena, TX blending facility" }],
+    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "U1Dynamics Manufacturing | Lubricant Blending & Private Label Manufacturing",
+    title: "U1Dynamics · Lubricant Blending & Private Label Manufacturing",
     description:
-      "U.S.-based lubricant blending, contract filling, and private label manufacturing in Pasadena, Texas.",
-    images: ["/images/product-lineup.jpg"],
+      "State-of-the-art lubricant blending and contract packaging. Private label, custom formulation, shipped worldwide from Pasadena, TX.",
+    images: ["/og-image.png"],
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
+  other: {
+    "geo.region": "US-TX",
+    "geo.placename": "Pasadena",
+    "geo.position": "29.63;-95.16",
+    ICBM: "29.63, -95.16",
   },
-  verification: {},
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "U1Dynamics Manufacturing LLC",
+      alternateName: "U1Dynamics",
+      url: `${siteUrl}/`,
+      logo: `${siteUrl}/logo.png`,
+      description:
+        "Lubricant blending, contract packaging and private label manufacturing for premium oils and specialty fluids.",
+      foundingDate: "2022",
+      sameAs: [
+        "https://www.linkedin.com/company/u1dynamics-manufacturing-llc",
+        "https://www.facebook.com/U1Dynamics/",
+      ],
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          telephone: "+1-888-687-8521",
+          contactType: "sales",
+          email: "info@u1dynamics.com",
+          areaServed: "Worldwide",
+          availableLanguage: ["English", "Spanish"],
+        },
+      ],
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": `${siteUrl}/#plant`,
+      name: "U1Dynamics Pasadena Plant",
+      image: `${siteUrl}/og-image.png`,
+      url: `${siteUrl}/`,
+      telephone: "+1-888-687-8521",
+      priceRange: "$$",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "4468 Genoa Red Bluff Rd",
+        addressLocality: "Pasadena",
+        addressRegion: "TX",
+        postalCode: "77505",
+        addressCountry: "US",
+      },
+      geo: { "@type": "GeoCoordinates", latitude: 29.63, longitude: -95.16 },
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          opens: "07:00",
+          closes: "17:00",
+        },
+      ],
+    },
+    {
+      "@type": "Service",
+      name: "Lubricant Contract Blending & Private Label Packaging",
+      provider: { "@id": `${siteUrl}/#organization` },
+      areaServed: "Worldwide",
+      serviceType: "Contract manufacturing",
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Capabilities",
+        itemListElement: [
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Lubricant Blending" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Contract Packaging" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Private Labeling" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Formulation R&D" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Specialty Fluids Manufacturing" } },
+        ],
+      },
+    },
+  ],
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" data-palette="steel" className={`${sans.variable} ${display.variable} ${mono.variable}`}>
       <head>
+        <meta name="theme-color" content="#0a0b0d" />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "ManufacturingBusiness",
-              "@id": "https://u1dynamics.com/#organization",
-              name: "U1Dynamics Manufacturing LLC",
-              description:
-                "U.S.-based lubricant blending, contract filling, and private label manufacturing facility. Specializing in engine oils, gear oils, transmission fluids, hydraulic oils, DEF, coolants, and industrial fluids.",
-              url: "https://u1dynamics.com",
-              telephone: "+18886878521",
-              email: "info@u1dynamics.com",
-              logo: {
-                "@type": "ImageObject",
-                url: "https://u1dynamics.com/images/logo-color.png",
-              },
-              image: [
-                "https://u1dynamics.com/images/facility/aerial-hero.jpg",
-                "https://u1dynamics.com/images/product-lineup.jpg",
-              ],
-              brand: {
-                "@type": "Brand",
-                name: "Ultra1Plus",
-                description: "Premium Quality Oils - Made in USA",
-              },
-              address: [
-                {
-                  "@type": "PostalAddress",
-                  name: "Manufacturing Facility",
-                  streetAddress: "4468 Genoa Red Bluff Road",
-                  addressLocality: "Pasadena",
-                  addressRegion: "TX",
-                  postalCode: "77505",
-                  addressCountry: "US",
-                },
-                {
-                  "@type": "PostalAddress",
-                  name: "Corporate Offices",
-                  streetAddress: "1600 Ponce De Leon Blvd STE 1108",
-                  addressLocality: "Coral Gables",
-                  addressRegion: "FL",
-                  postalCode: "33134",
-                  addressCountry: "US",
-                },
-              ],
-              geo: {
-                "@type": "GeoCoordinates",
-                latitude: 29.6633,
-                longitude: -95.1513,
-              },
-              areaServed: [
-                { "@type": "Country", name: "United States" },
-                { "@type": "AdministrativeArea", name: "International" },
-              ],
-              openingHoursSpecification: {
-                "@type": "OpeningHoursSpecification",
-                dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-                opens: "08:00",
-                closes: "17:00",
-              },
-              makesOffer: [
-                {
-                  "@type": "Offer",
-                  itemOffered: {
-                    "@type": "Service",
-                    name: "Contract Lubricant Manufacturing",
-                    description: "Formulation blending, production scale-up, quality control, packaging, filling, and logistics coordination.",
-                    url: "https://u1dynamics.com/contract-lubricant-manufacturing",
-                  },
-                },
-                {
-                  "@type": "Offer",
-                  itemOffered: {
-                    "@type": "Service",
-                    name: "Private Label Lubricant Manufacturing",
-                    description: "Engine oils, gear oils, transmission fluids, hydraulic oils, and specialty lubricants under your brand.",
-                    url: "https://u1dynamics.com/private-label-lubricants",
-                  },
-                },
-                {
-                  "@type": "Offer",
-                  itemOffered: {
-                    "@type": "Service",
-                    name: "Toll Blending Services",
-                    description: "Custom formulation blending for lubricant companies with proprietary formulas.",
-                    url: "https://u1dynamics.com/toll-blending-lubricants",
-                  },
-                },
-                {
-                  "@type": "Offer",
-                  itemOffered: {
-                    "@type": "Service",
-                    name: "Lubricant Contract Packaging",
-                    description: "Contract filling and packaging in quarts, gallons, pails, drums, totes, and flexibags.",
-                    url: "https://u1dynamics.com/lubricant-contract-packaging",
-                  },
-                },
-                {
-                  "@type": "Offer",
-                  itemOffered: {
-                    "@type": "Service",
-                    name: "DEF Manufacturing",
-                    description: "ISO 22241 compliant diesel exhaust fluid in bulk, tote, drum, and retail packaging formats.",
-                    url: "https://u1dynamics.com/diesel-exhaust-fluid-manufacturer",
-                  },
-                },
-                {
-                  "@type": "Offer",
-                  itemOffered: {
-                    "@type": "Service",
-                    name: "Coolant & Antifreeze Manufacturing",
-                    description: "Extended life coolants, heavy-duty antifreeze, and universal coolant technologies.",
-                    url: "https://u1dynamics.com/coolant-antifreeze-manufacturer",
-                  },
-                },
-                {
-                  "@type": "Offer",
-                  itemOffered: {
-                    "@type": "Service",
-                    name: "Industrial Fluid Manufacturing",
-                    description: "Hydraulic oils, compressor oils, metalworking fluids, and specialty industrial formulations.",
-                    url: "https://u1dynamics.com/industrial-fluid-manufacturing",
-                  },
-                },
-              ],
-            }),
-          }}
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${geistSans.variable} antialiased`}>
+      <body>
+        <a href="#main" className="skip-link">Skip to content</a>
         <Header />
-        <main>{children}</main>
+        <main id="main">{children}</main>
         <Footer />
       </body>
     </html>

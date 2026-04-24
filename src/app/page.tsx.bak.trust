@@ -1,8 +1,6 @@
 import Hero from "./components/sections/Hero";
 import { Ticker, Manifesto, Capabilities, SpecSheet } from "./components/sections/Story";
 import { Process, Facility, Industries, USA } from "./components/sections/ProcessFacility";
-import TrustStrip from "./components/sections/TrustStrip";
-import BrandBridge from "./components/sections/BrandBridge";
 import Contact from "./components/sections/Contact";
 
 export default function Page() {
@@ -10,9 +8,7 @@ export default function Page() {
     <>
       <Hero />
       <Ticker />
-      <TrustStrip />
       <Manifesto />
-      <BrandBridge />
       <Capabilities />
       <SpecSheet />
       <Process />
