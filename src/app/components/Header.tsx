@@ -6,6 +6,7 @@ import Link from "next/link";
 
 const navLinks = [
   { href: "/#capabilities", label: "Capabilities" },
+  { href: "/diesel-exhaust-fluid-manufacturer", label: "DEF" },
   { href: "/products", label: "Products" },
   { href: "/#facility", label: "Facility" },
   { href: "/#industries", label: "Industries" },

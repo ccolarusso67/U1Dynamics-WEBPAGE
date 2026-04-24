@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 
 const IMG = "/images/facility/";
@@ -102,8 +103,9 @@ export function Capabilities() {
     {
       n: "CAP/03",
       t: "DEF Manufacturing",
-      d: "ISO 22241 compliant Diesel Exhaust Fluid in bulk, tote, drum, 2.5 gal jug, and retail formats.",
-      items: ["API certified", "Bulk / tote / drum", "Direct-to-retail"],
+      d: "API-certified, ISO 22241-1 compliant Diesel Exhaust Fluid — blended only from industrial premium virgin urea. Jug to tanker, sub-pallet MOQ.",
+      items: ["API certified", "Virgin urea only", "< 1 pallet MOQ"],
+      href: "/diesel-exhaust-fluid-manufacturer",
       icon: (
         <svg viewBox="0 0 48 48" className="cap-cell-icon">
           <path d="M24 6l10 14a10 10 0 11-20 0L24 6z" />
@@ -140,23 +142,33 @@ export function Capabilities() {
         </header>
       </div>
       <div className="cap-matrix">
-        {caps.map((c) => (
-          <article className="cap-cell" key={c.n}>
-            <div className="cap-cell-head">
-              <span className="cap-cell-num">{c.n}</span>
-              {c.icon}
-            </div>
-            <div>
-              <h3>{c.t}</h3>
-              <p>{c.d}</p>
-              <ul className="cap-cell-list">
-                {c.items.map((i) => (
-                  <li key={i}>{i}</li>
-                ))}
-              </ul>
-            </div>
-          </article>
-        ))}
+        {caps.map((c) => {
+          const body = (
+            <article className={"cap-cell" + ((c as any).href ? " cap-cell-link" : "")}>
+              <div className="cap-cell-head">
+                <span className="cap-cell-num">{c.n}</span>
+                {c.icon}
+              </div>
+              <div>
+                <h3>{c.t}</h3>
+                <p>{c.d}</p>
+                <ul className="cap-cell-list">
+                  {c.items.map((i) => (
+                    <li key={i}>{i}</li>
+                  ))}
+                </ul>
+                {(c as any).href && (
+                  <span className="cap-cell-cta">Learn more <span aria-hidden="true">→</span></span>
+                )}
+              </div>
+            </article>
+          );
+          return (c as any).href ? (
+            <Link key={c.n} href={(c as any).href} className="cap-cell-wrap">{body}</Link>
+          ) : (
+            <div key={c.n} className="cap-cell-wrap">{body}</div>
+          );
+        })}
       </div>
     </section>
   );

@@ -32,7 +32,7 @@ export default function Footer() {
             <h5>PROGRAMS</h5>
             <Link href="/#capabilities">Contract manufacturing</Link>
             <Link href="/#capabilities">Private label</Link>
-            <Link href="/#capabilities">DEF manufacturing</Link>
+            <Link href="/diesel-exhaust-fluid-manufacturer">DEF manufacturing</Link>
             <Link href="/#capabilities">Coolants &amp; antifreeze</Link>
             <Link href="/#capabilities">Specialty formulation</Link>
           </div>

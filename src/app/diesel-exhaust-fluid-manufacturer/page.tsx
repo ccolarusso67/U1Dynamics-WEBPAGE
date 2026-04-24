@@ -3,17 +3,17 @@ import ServicePageLayout from "@/app/components/ServicePageLayout";
 
 export const metadata: Metadata = {
   title:
-    "Diesel Exhaust Fluid Manufacturer | DEF Packaging, Bulk Supply & Private Label",
+    "API-Certified DEF Manufacturer | ISO 22241-1 Diesel Exhaust Fluid, Virgin Urea, Private Label",
   description:
-    "U1Dynamics manufactures ISO 22241 compliant diesel exhaust fluid (DEF) in retail, commercial, and bulk formats. Private label DEF programs, contract packaging, and direct shipment from Pasadena, Texas.",
+    "U1Dynamics blends API-certified, ISO 22241-1 compliant diesel exhaust fluid from industrial premium virgin urea only. Sub-pallet MOQs, sub-week lead times, jug-to-tanker packaging. Pasadena, TX.",
   alternates: {
     canonical: "/diesel-exhaust-fluid-manufacturer",
   },
   openGraph: {
     title:
-      "Diesel Exhaust Fluid Manufacturer | DEF Packaging, Bulk Supply & Private Label",
+      "API-Certified DEF Manufacturer | ISO 22241-1 Virgin Urea Diesel Exhaust Fluid",
     description:
-      "U1Dynamics manufactures ISO 22241 compliant diesel exhaust fluid (DEF) in retail, commercial, and bulk formats. Private label DEF programs, contract packaging, and direct shipment from Pasadena, Texas.",
+      "API-certified and ISO 22241-1 compliant DEF, blended only from industrial-grade virgin urea. Sub-pallet MOQs. Sub-week turnaround. Private label welcome.",
     url: "https://u1dynamics.com/diesel-exhaust-fluid-manufacturer",
   },
 };
@@ -23,142 +23,159 @@ export default function DieselExhaustFluidManufacturerPage() {
     <ServicePageLayout
       breadcrumbLabel="DEF Manufacturing"
       breadcrumbHref="/diesel-exhaust-fluid-manufacturer"
-      badge="DEF Manufacturing"
-      title="Diesel Exhaust Fluid Manufacturing for Brands and Distributors"
-      subtitle="ISO 22241 compliant DEF manufactured, packaged, and shipped from our Pasadena, Texas facility. From 2.5-gallon jugs to bulk totes, we supply the formats your customers need."
+      badge="API CERTIFIED · ISO 22241-1"
+      title="API-Certified Diesel Exhaust Fluid. Industrial Virgin Urea Only."
+      subtitle="We blend DEF the way the spec sheet was written — from industrial premium virgin urea and ultra-pure deionized water, tested batch-by-batch, and API-certified for every shipment. Sub-pallet MOQs. Sub-week turnaround. Jug to tanker."
       heroImage="/images/facility/ibc-tank.jpg"
-      heroImageAlt="IBC tote of diesel exhaust fluid at U1Dynamics DEF manufacturing facility"
+      heroImageAlt="IBC tote of API-certified DEF at U1Dynamics' Pasadena, TX blending facility"
       stats={[
-        { value: "ISO 22241", label: "Compliant" },
-        { value: "1,000+", label: "SKUs Produced" },
-        { value: "38+", label: "Export Markets" },
-        { value: "24/7", label: "Production" },
+        { value: "API", label: "Certified Blender" },
+        { value: "ISO 22241-1", label: "Compliant" },
+        { value: "< 1 WEEK", label: "Lead Time" },
+        { value: "< 1 PALLET", label: "Private-Label MOQ" },
       ]}
-      capabilitiesTitle="Full-Spectrum DEF Manufacturing"
-      capabilitiesDescription="From raw material sourcing to final packaging, we handle every stage of DEF production with strict quality controls."
+      capabilitiesTitle="DEF, Built On Purity"
+      capabilitiesDescription="Most of what goes wrong with DEF happens upstream of the filling line. Our program is engineered around raw-material control, batch-level documentation, and the kind of lab discipline that keeps SCR systems alive."
       capabilities={[
         {
-          title: "ISO 22241 Compliance",
+          title: "Industrial Premium Virgin Urea — Not Reclaimed",
           description:
-            "Every batch of DEF we produce meets ISO 22241 standards for purity and concentration. We maintain rigorous documentation and traceability so you can sell with confidence.",
+            "We source only industrial premium virgin urea. No reclaimed, no fertilizer-grade, no off-spec. The urea going into your DEF is the same material specified for heavy-duty on-highway engines by the OEMs that set the standard.",
         },
         {
-          title: "Retail Packaging (2.5-Gallon Jugs)",
+          title: "API Certification — On Every Lot",
           description:
-            "Our high-speed filling lines produce shelf-ready 2.5-gallon DEF jugs for retail and convenience store distribution. Custom labeling and case configurations available.",
+            "API certification is not a one-time audit at U1Dynamics — it is a production discipline. Every lot we blend is documented, sampled, and traceable to the certification framework that fleet operators, truck stops, and retailers trust.",
         },
         {
-          title: "Commercial Packaging (Drums & Totes)",
+          title: "ISO 22241-1 Compliance, Batch by Batch",
           description:
-            "55-gallon drums and 275/330-gallon IBC totes for fleet operators, truck stops, and commercial accounts. Palletized and ready for direct delivery.",
+            "32.5% urea, 67.5% deionized water, and a contaminant ceiling the international standard spells out to the ppm. Every batch is analyzed in-house for urea concentration, alkalinity, biuret, and trace metals before it touches a filling head.",
         },
         {
-          title: "Bulk DEF Supply",
+          title: "Jug to Tanker — One Facility",
           description:
-            "Tanker-load quantities for large fleet operations, fuel distributors, and industrial users. We coordinate logistics from our facility to your storage infrastructure.",
+            "1 gal and 2.5 gal retail jugs, 2.5 gal jugs with integrated spout, 5 gal pails, 55 gal drums, 275 and 330 gal IBC totes, and bulk tanker delivery. Every format, same lot integrity, same documentation.",
         },
         {
-          title: "Private Label DEF Programs",
+          title: "Private-Label DEF from < 1 Pallet",
           description:
-            "Launch your own DEF brand without building a plant. We handle formulation, filling, labeling, and fulfillment while you focus on sales and distribution.",
+            "Most API-certified blenders won't quote you under a full tanker. We will. Launch your own DEF line with sub-pallet MOQs, existing-label turnaround under a week, and packaging mix-and-match across every format we run.",
         },
         {
-          title: "Quality Testing & Documentation",
+          title: "Certificates of Analysis With Every Shipment",
           description:
-            "In-house laboratory testing on every production run verifies urea concentration, alkalinity, and contaminant levels. Certificates of analysis accompany every shipment.",
+            "Every drum, tote, and tanker ships with a batch-referenced Certificate of Analysis. Date-coded containers. Lot-level traceability. Retained samples. If there is ever a question about what is in the bottle, the paperwork answers it.",
         },
       ]}
       packagingFormats={[
-        "2.5-gallon jugs",
-        "1-gallon bottles",
-        "55-gallon drums",
-        "275-gallon totes",
-        "330-gallon totes",
+        "1 gal jugs",
+        "2.5 gal jugs",
+        "2.5 gal w/ integrated spout",
+        "5 gal pails",
+        "55 gal drums",
+        "275 gal IBC totes",
+        "330 gal IBC totes",
         "Bulk tanker",
-        "Cases (retail)",
-        "Custom formats",
       ]}
       packagingImage="/images/facility/warehouse-pallets.jpg"
-      packagingImageAlt="DEF packaging inventory at U1Dynamics warehouse"
+      packagingImageAlt="Palletized API-certified DEF inventory at U1Dynamics warehouse"
       industries={[
-        "Trucking & Fleet",
-        "Agriculture",
-        "Construction",
-        "Government & Military",
-        "Automotive Aftermarket",
-        "Retail & Convenience",
-        "Industrial",
+        "Retail Chains (Auto Parts, Truck Stops)",
+        "Fleet Operators (Trucking, Logistics)",
+        "Agricultural Co-ops",
+        "Fuel Distributors",
+        "Industrial / Off-Highway",
+        "Private-Label Brand Owners",
+        "Export Customers (38+ Markets)",
       ]}
       processSteps={[
         {
-          label: "Sourcing",
+          label: "Raw Material Sourcing",
           description:
-            "We procure high-purity urea and deionized water from vetted suppliers, ensuring every input meets ISO 22241 raw material specifications.",
+            "Industrial premium virgin urea, sourced from vetted upstream producers. Deionized water generated in-house to meet ISO 22241-1's ppm-level contaminant limits. Every incoming lot is sampled before it is allowed onto the blending floor.",
         },
         {
-          label: "Purification & Mixing",
+          label: "Precision Blending",
           description:
-            "Urea is dissolved in deionized water at precisely controlled temperatures and ratios to achieve the 32.5% concentration required by the standard.",
+            "Urea is dissolved into ultra-pure deionized water at controlled temperature and ratio to hit the 32.5% concentration target the standard requires. Closed-system transfer, stainless contact surfaces, no cross-product exposure.",
         },
         {
-          label: "Quality Testing",
+          label: "In-House Laboratory Analysis",
           description:
-            "Each batch undergoes laboratory analysis for urea concentration, alkalinity, biuret content, and trace metals before it moves to the filling line.",
+            "Every batch is analyzed for urea concentration, alkalinity, biuret, aldehyde, insoluble matter, and trace metals (Ca, Fe, Cu, Zn, Cr, Ni, Al, Mg, Na, K, P). No batch moves to fill until the analysis is signed off.",
         },
         {
-          label: "Filling",
+          label: "Automated Filling",
           description:
-            "Automated filling lines handle everything from 1-gallon bottles to 330-gallon IBC totes with volumetric accuracy and contamination prevention protocols.",
+            "Dedicated DEF filling lines, isolated from lubricant production, handle everything from 1 gal retail jugs to 330 gal IBCs with volumetric accuracy and contamination-prevention protocols built in.",
         },
         {
-          label: "Labeling & Packaging",
+          label: "Labeling & Documentation",
           description:
-            "Products are labeled with your branding or ours, serialized for traceability, and palletized for efficient warehousing and transport.",
+            "Your label or ours. Date-coded containers for shelf-life traceability. Case configurations built to retail planogram or fleet-yard spec. Certificate of Analysis attached to every outbound lot.",
         },
         {
           label: "Distribution",
           description:
-            "Finished DEF ships from our Pasadena, Texas facility via LTL, full truckload, or bulk tanker to destinations across the U.S. and internationally.",
+            "LTL, full-truckload, and bulk tanker shipping from our Pasadena, TX facility. Direct port access for export programs. 38+ international markets served today.",
         },
       ]}
       faqs={[
         {
-          question: "What is diesel exhaust fluid (DEF)?",
+          question:
+            "What makes virgin urea different from reclaimed or fertilizer-grade urea?",
           answer:
-            "DEF is a high-purity solution of 32.5% urea and 67.5% deionized water. It is injected into the exhaust stream of diesel engines equipped with Selective Catalytic Reduction (SCR) systems to convert harmful nitrogen oxides into harmless nitrogen and water vapor. DEF is required by EPA emissions regulations for most modern diesel vehicles and equipment.",
+            "Industrial premium virgin urea is manufactured to the purity specification that DEF and SCR systems actually require — biuret controlled, trace metals controlled, aldehyde controlled. Fertilizer-grade urea is produced to agricultural targets and routinely contains contaminants (iron, phosphorus, sulfates) at levels that will poison an SCR catalyst over time. Reclaimed urea can vary shipment to shipment. We only use virgin. It is the single most important decision in DEF manufacturing.",
         },
         {
-          question: "Is your DEF ISO 22241 certified?",
+          question: "Are you API certified for DEF?",
           answer:
-            "Yes. All DEF manufactured at our Pasadena facility complies with ISO 22241, the international standard that governs DEF purity, concentration, and contaminant limits. We test every batch in our on-site laboratory and provide certificates of analysis with each shipment.",
+            "Yes. U1Dynamics is API-certified under the API Diesel Exhaust Fluid Certification Program, which is the most trusted third-party certification mark in the U.S. DEF market. API certification verifies that our DEF meets ISO 22241 purity and concentration requirements and that our production, packaging, and handling systems are audited to maintain that compliance through to the end customer.",
         },
         {
-          question: "What packaging formats are available for DEF?",
+          question: "What is ISO 22241-1 and why does it matter?",
           answer:
-            "We offer DEF in 1-gallon bottles, 2.5-gallon jugs, 55-gallon drums, 275-gallon totes, 330-gallon totes, and bulk tanker loads. We can also configure custom retail case packs and pallet configurations to match your distribution requirements.",
+            "ISO 22241-1 is the international standard that defines what diesel exhaust fluid actually is — a 32.5% solution of urea in deionized water, with strict limits on alkalinity, biuret, aldehydes, insoluble matter, and a long list of trace metals. If DEF falls outside those limits, the SCR catalyst in the truck can be damaged permanently. Every batch we produce is tested against ISO 22241-1 in our on-site lab before it ships.",
         },
         {
-          question: "Do you offer private label DEF programs?",
+          question:
+            "What is your minimum order quantity for private-label DEF?",
           answer:
-            "Absolutely. Our private label program covers everything from product manufacturing to label design support, filling, and fulfillment. You provide your brand identity and sales channels, and we handle production and quality assurance. Many of our partners sell DEF under their own brand without operating a single piece of manufacturing equipment.",
+            "We regularly run private-label DEF programs starting at under a full pallet. Most API-certified blenders will not quote you below a tanker; we built our operation specifically to accommodate brands, distributors, and regional retailers who need smaller starting volumes and the ability to scale up without changing vendors. Call us and describe the program — we will tell you exactly what minimums look like for your packaging mix.",
         },
         {
-          question: "What are your minimum order quantities for DEF?",
+          question: "How fast can you turn around a DEF order?",
           answer:
-            "Minimum order quantities depend on the packaging format and whether you are ordering under our brand or a private label program. We work with businesses of all sizes, from regional distributors to national retailers. Contact our sales team for specific MOQ details for your situation.",
+            "Orders against an existing label typically ship inside a week — sometimes inside 48 hours if we have stock on hand. New private-label programs (new art, new case configuration, new SKU) usually run two to three weeks depending on packaging. If you have a hard deadline, tell us up front and we will back into the schedule.",
+        },
+        {
+          question: "What packaging formats do you offer?",
+          answer:
+            "Everything from a 1-gallon retail jug to a bulk tanker: 1 gal, 2.5 gal (plain or integrated-spout), 5 gal pails, 55 gal drums, 275 gal and 330 gal IBC totes, and tanker quantities. We can mix formats within a single purchase order and configure retail case packs and pallet patterns to match your distribution requirements.",
+        },
+        {
+          question: "Is DEF the same thing as AdBlue?",
+          answer:
+            "Yes — DEF and AdBlue are the same product, sold under different names in different markets. AdBlue is the trademarked name used primarily in Europe by VDA-licensed producers; DEF is the name used in North America. Both are 32.5% high-purity urea in deionized water, and both are defined by ISO 22241. We produce under the DEF name for domestic and export customers.",
         },
         {
           question: "What is the shelf life of DEF?",
           answer:
-            "When stored properly between 12 and 86 degrees Fahrenheit and out of direct sunlight, DEF has a shelf life of approximately 12 months. Higher storage temperatures can reduce shelf life. We date-code every container so you and your customers always know the production date.",
+            "Approximately 12 months when stored between 12 F and 86 F (about -11 C to 30 C) and out of direct sunlight. Higher storage temperatures accelerate degradation and shorten shelf life. Every container we ship is date-coded so you and your customers always know when it was produced.",
+        },
+        {
+          question: "Do you ship DEF internationally?",
+          answer:
+            "Yes. We serve customers in 38+ international markets from our Pasadena, TX facility, which has direct access to Gulf Coast ports. We handle export documentation, container loading, and packaging adjustments for destination-market requirements. If you are building an export program, start by telling us the market and the format.",
         },
       ]}
-      ctaTitle="Need a Reliable DEF Supply Partner?"
-      ctaDescription="Whether you need private label DEF or bulk supply, our team is ready to build a program that fits your business."
-      secondaryTitle="ISO 22241 Compliance at Every Stage"
-      secondaryDescription="Quality is not an afterthought in DEF manufacturing — it is the entire point. Engines and SCR systems are sensitive to contamination, which means every step of our process is designed to prevent it. From the purity of our raw water supply to the cleanliness of our filling equipment, we maintain the controls that keep your product in spec and your customers' equipment running. Every batch is tested, documented, and traceable back to the raw materials that went into it."
+      ctaTitle="Build a DEF Program Around Purity."
+      ctaDescription="Private label, bulk supply, retail, fleet, export — every program starts the same way: a conversation about volumes, formats, and timing. Reach out and we will put together a quote."
+      secondaryTitle="Purity Starts Upstream. Everything Else Is Downstream."
+      secondaryDescription="DEF is a deceptively simple product. Two ingredients, one ratio, one international standard. The thing that separates a great blender from a merely compliant one is what happens before the filling line — the urea you choose to buy, the water you choose to purify, and the discipline with which you refuse every shortcut. We blend DEF the way the OEMs specified it, not the way a spreadsheet says we could. That is why fleet operators trust our label. That is why retail chains put us on the pallet. That is why the Certificate of Analysis means something when it shows up with your order."
       secondaryImage="/images/facility/lab-testing.jpg"
-      secondaryImageAlt="Quality testing in U1Dynamics laboratory"
+      secondaryImageAlt="In-house laboratory analysis of DEF at U1Dynamics"
     />
   );
 }
