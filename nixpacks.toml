@@ -1,0 +1,21 @@
+# Nixpacks build config for Railway — static site served by Caddy.
+# Build phase copies the v3/ directory (canonical version) into /app/public.
+
+[phases.setup]
+nixPkgs = ["caddy"]
+
+[phases.build]
+cmds = [
+  "mkdir -p public",
+  "cp -r v3/. public/",
+  "cp robots.txt public/robots.txt",
+  "cp sitemap.xml public/sitemap.xml",
+  "cp logo.png public/logo.png",
+  "cp og-image.png public/og-image.png",
+  "cp favicon-16.png public/favicon-16.png",
+  "cp favicon-32.png public/favicon-32.png",
+  "cp apple-touch-icon.png public/apple-touch-icon.png"
+]
+
+[start]
+cmd = "caddy run --config Caddyfile --adapter caddyfile"

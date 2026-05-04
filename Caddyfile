@@ -1,0 +1,47 @@
+u1dynamics.com, www.u1dynamics.com {
+    root * /app/public
+    file_server
+    encode zstd gzip
+
+    # Security headers
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "SAMEORIGIN"
+        Referrer-Policy "strict-origin-when-cross-origin"
+        Permissions-Policy "camera=(), microphone=(), geolocation=()"
+        -Server
+    }
+
+    # Long-cache hashed/static assets
+    @assets {
+        path *.css *.js *.jsx *.png *.jpg *.jpeg *.webp *.svg *.woff *.woff2 *.ico
+    }
+    header @assets Cache-Control "public, max-age=31536000, immutable"
+
+    # No-cache HTML so deploys take effect immediately
+    @html {
+        path *.html /
+    }
+    header @html Cache-Control "public, max-age=0, must-revalidate"
+
+    # Canonical: redirect www -> apex
+    @www host www.u1dynamics.com
+    redir @www https://u1dynamics.com{uri} 301
+
+    # SPA-ish fallback (single page; serves index for unknown paths)
+    try_files {path} /index.html
+
+    log {
+        output stdout
+        format console
+    }
+}
+
+# Local / Railway-internal access on whatever port Caddy binds to
+:{$PORT:80} {
+    root * /app/public
+    file_server
+    encode zstd gzip
+    try_files {path} /index.html
+}

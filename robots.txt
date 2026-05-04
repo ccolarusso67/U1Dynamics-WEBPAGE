@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /uploads/
+Disallow: /v2/
+Disallow: /nextjs-refactor/
+Disallow: /screens/
+Disallow: /screenshots/
+Disallow: /_install/
+
+Sitemap: https://u1dynamics.com/sitemap.xml
