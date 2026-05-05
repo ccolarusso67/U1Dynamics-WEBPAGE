@@ -103,36 +103,3 @@ function Ticker() {
 }
 
 Object.assign(window, { Hero, Trust, Ticker });
-/* === TRUST: two-row layout with logo strip === */
-.trust-block {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid var(--line);
-}
-.trust-block:last-child {
-  border-bottom: none;
-}
-.trust-row {
-  display: flex;
-  align-items: center;
-  gap: 2.5rem;
-  flex-wrap: wrap;
-  flex: 1;
-}
-.trust-partner {
-  display: inline-flex;
-  align-items: center;
-  height: 28px;
-}
-.trust-logo {
-  height: 22px;
-  width: auto;
-  opacity: 0.78;
-  filter: brightness(0) invert(0.92);  /* cream monochrome to match palette */
-  transition: opacity 0.2s ease, filter 0.2s ease;
-}
-.trust-logo:hover {
-  opacity: 1;
-}
