@@ -1,0 +1,18 @@
+# Cloudflare Pages redirects file
+# Format: <source> <destination> <status>
+
+# www -> apex (canonical)
+https://www.u1dynamics.com/* https://u1dynamics.com/:splat 301!
+
+# Old paths from earlier site versions -> home
+/v2/* / 301
+/nextjs-refactor/* / 301
+/screens/* / 301
+/screenshots/* / 301
+/uploads/* / 301
+/_install/* / 301
+
+# Friendly aliases for in-page anchors (helps share links)
+/contact /#contact 301
+/products /#capabilities 301
+/about /#facility 301
