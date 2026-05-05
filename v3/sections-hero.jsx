@@ -44,26 +44,27 @@ function Hero() {
 }
 
 function Trust() {
-  const online = ["amazon", "autozone", "ebay", "lowes", "northern-tool", "raneys", "rural-king", "tractor-supply", "walmart"];
-  const stocked = ["northern-tool"];
-
-  const labels = {
-    "amazon": "Amazon",
-    "autozone": "AutoZone",
-    "ebay": "eBay",
-    "lowes": "Lowe's",
-    "northern-tool": "Northern Tool",
-    "raneys": "Raney's",
-    "rural-king": "Rural King",
-    "tractor-supply": "Tractor Supply",
-    "walmart": "Walmart"
+  const partners = {
+    "amazon":         { name: "Amazon",         ext: "png" },
+    "autozone":       { name: "AutoZone",       ext: "png" },
+    "ebay":           { name: "eBay",           ext: "jpg" },
+    "lowes":          { name: "Lowe's",         ext: "png" },
+    "northern-tool":  { name: "Northern Tool",  ext: "png" },
+    "raneys":         { name: "Raney's",        ext: "png" },
+    "rural-king":     { name: "Rural King",     ext: "png" },
+    "tractor-supply": { name: "Tractor Supply", ext: "png" },
+    "walmart":        { name: "Walmart",        ext: "png" },
+    "zoro":           { name: "Zoro",           ext: "png" }
   };
 
+  const online = ["amazon", "autozone", "ebay", "lowes", "northern-tool", "raneys", "rural-king", "tractor-supply", "walmart", "zoro"];
+  const stocked = ["northern-tool"];
+
   const renderPartner = (slug) => (
-    <span key={slug} className="trust-partner" title={labels[slug]}>
+    <span key={slug} className="trust-partner" title={partners[slug].name}>
       <img
-        src={`/public/images/retailers/${slug}.svg`}
-        alt={labels[slug]}
+        src={`/public/images/retailers/${slug}.${partners[slug].ext}`}
+        alt={partners[slug].name}
         className="trust-logo"
       />
     </span>
