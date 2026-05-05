@@ -44,13 +44,41 @@ function Hero() {
 }
 
 function Trust() {
-  const partners = ["Walmart", "AutoZone", "Amazon", "Tractor Supply", "Northern Tool", "NAPA", "O'Reilly"];
+  const online = ["amazon", "autozone", "ebay", "lowes", "northern-tool", "raneys", "rural-king", "tractor-supply", "walmart"];
+  const stocked = ["northern-tool"];
+
+  const labels = {
+    "amazon": "Amazon",
+    "autozone": "AutoZone",
+    "ebay": "eBay",
+    "lowes": "Lowe's",
+    "northern-tool": "Northern Tool",
+    "raneys": "Raney's",
+    "rural-king": "Rural King",
+    "tractor-supply": "Tractor Supply",
+    "walmart": "Walmart"
+  };
+
+  const renderPartner = (slug) => (
+    <span key={slug} className="trust-partner" title={labels[slug]}>
+      <img
+        src={`/public/images/retailers/${slug}.svg`}
+        alt={labels[slug]}
+        className="trust-logo"
+      />
+    </span>
+  );
+
   return (
     <section className="trust">
       <div className="trust-inner">
-        <span className="trust-lbl">Stocked at</span>
-        <div className="trust-row">
-          {partners.map(p => <span key={p}>{p}</span>)}
+        <div className="trust-block">
+          <span className="trust-lbl">Online at</span>
+          <div className="trust-row">{online.map(renderPartner)}</div>
+        </div>
+        <div className="trust-block">
+          <span className="trust-lbl">Stocked at</span>
+          <div className="trust-row">{stocked.map(renderPartner)}</div>
         </div>
       </div>
     </section>
@@ -74,3 +102,36 @@ function Ticker() {
 }
 
 Object.assign(window, { Hero, Trust, Ticker });
+/* === TRUST: two-row layout with logo strip === */
+.trust-block {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.trust-block:last-child {
+  border-bottom: none;
+}
+.trust-row {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  flex: 1;
+}
+.trust-partner {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+}
+.trust-logo {
+  height: 22px;
+  width: auto;
+  opacity: 0.78;
+  filter: brightness(0) invert(0.92);  /* cream monochrome to match palette */
+  transition: opacity 0.2s ease, filter 0.2s ease;
+}
+.trust-logo:hover {
+  opacity: 1;
+}
