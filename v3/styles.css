@@ -2024,3 +2024,48 @@ html[lang] body [class*="hero"] p:not([class*="meta"]):not([class*="lbl"]):not([
   height: auto !important;
   object-fit: contain;
 }
+/* === TRUST FINAL OVERRIDE V4 === */
+.trust-inner {
+  display: flex !important;
+  flex-direction: column !important;
+  grid-template-columns: none !important;
+  gap: 1rem !important;
+}
+.trust-block {
+  display: grid !important;
+  grid-template-columns: auto 1fr !important;
+  gap: 2rem !important;
+  align-items: center !important;
+  padding: 0.5rem 0 !important;
+  border-bottom: 1px solid var(--line) !important;
+  flex-wrap: nowrap !important;
+}
+.trust-block:last-child {
+  border-bottom: none !important;
+}
+.trust-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.85rem !important;
+  flex-wrap: wrap !important;
+}
+.trust-partner {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 44px !important;
+  width: 108px !important;
+  background: var(--paper) !important;
+  border-radius: 4px !important;
+  padding: 6px 10px !important;
+  flex-shrink: 0 !important;
+}
+.trust-logo {
+  max-height: 28px !important;
+  max-width: 100% !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  filter: none !important;
+  opacity: 1 !important;
+}
