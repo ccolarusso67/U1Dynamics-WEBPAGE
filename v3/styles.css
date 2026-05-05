@@ -1979,3 +1979,38 @@ html[lang] body section:first-of-type p,
 html[lang] body [class*="hero"] p:not([class*="meta"]):not([class*="lbl"]):not([class*="cta"]) {
   text-shadow: 0 1px 3px rgba(0,0,0,0.4);
 }
+/* === TRUST: two-row layout with retailer logos === */
+.trust-block {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.trust-block:last-child {
+  border-bottom: none;
+}
+.trust-row {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  flex: 1;
+}
+.trust-partner {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+}
+.trust-logo {
+  height: 26px;
+  width: auto;
+  max-width: 130px;
+  object-fit: contain;
+  opacity: 0.78;
+  filter: brightness(0) invert(0.92);
+  transition: opacity 0.2s ease, filter 0.2s ease;
+}
+.trust-logo:hover {
+  opacity: 1;
+}
