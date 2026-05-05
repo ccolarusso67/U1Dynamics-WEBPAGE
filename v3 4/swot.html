@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>U1Dynamics · SWOT · Web · SEO · GA4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#0d0c0a; --bg-1:#141210; --bg-2:#1c1916;
+  --paper:#ece6d9; --dim:#a09a8d; --mute:#6c6660;
+  --line:#2a2622; --line-2:#221f1c;
+  --amber:#b56a5a;  /* Ox */
+  --amber-deep:#854a3e;
+  --green:#9bb18b;
+  --red:#c66a55;
+  --display:'Cormorant Garamond', serif;
+  --sans:'Inter', sans-serif;
+  --mono:'JetBrains Mono', monospace;
+  --gutter:clamp(40px, 6vw, 100px);
+  --maxw:1480px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--paper);font-family:var(--sans);font-weight:300;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(80% 60% at 50% 0%, rgba(181,106,90,0.04), transparent 60%);pointer-events:none;z-index:0}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter);position:relative;z-index:1}
+
+/* HERO */
+.hero{padding:clamp(80px,12vw,160px) 0 clamp(40px,6vw,80px);border-bottom:1px solid var(--line)}
+.hero-meta{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);padding-bottom:32px;border-bottom:1px solid var(--line-2);margin-bottom:48px}
+.hero-meta b{color:var(--amber);font-weight:500}
+.hero h1{font-family:var(--display);font-weight:300;font-size:clamp(52px,8vw,128px);line-height:0.96;letter-spacing:-0.025em;text-wrap:balance;margin-bottom:32px}
+.hero h1 em{font-style:italic;color:var(--amber)}
+.hero-lede{display:grid;grid-template-columns:1fr 1.2fr;gap:48px;padding-top:32px;border-top:1px solid var(--line-2)}
+.hero-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber)}
+.hero-lede p{color:var(--dim);font-size:17px;line-height:1.55;max-width:60ch}
+
+/* SWOT QUADRANTS */
+.swot{padding:clamp(60px,10vw,120px) 0;border-bottom:1px solid var(--line)}
+.swot-head{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:24px;border-bottom:1px solid var(--line-2);margin-bottom:48px}
+.swot-head h2{font-family:var(--display);font-weight:300;font-size:clamp(32px,4vw,52px);letter-spacing:-0.015em}
+.swot-head h2 em{font-style:italic;color:var(--amber)}
+.swot-head-meta{font-family:var(--mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute)}
+.quad{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line-2);border-left:1px solid var(--line-2)}
+.quad-cell{border-right:1px solid var(--line-2);border-bottom:1px solid var(--line-2);padding:36px 32px;min-height:520px;display:flex;flex-direction:column;gap:18px;position:relative;background:var(--bg-1)}
+.quad-cell.s{background:linear-gradient(135deg, rgba(155,177,139,0.04), transparent 60%)}
+.quad-cell.w{background:linear-gradient(135deg, rgba(198,106,85,0.04), transparent 60%)}
+.quad-cell.o{background:linear-gradient(135deg, rgba(181,106,90,0.05), transparent 60%)}
+.quad-cell.t{background:linear-gradient(135deg, rgba(108,102,96,0.06), transparent 60%)}
+.quad-head{display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:16px;border-bottom:1px solid var(--line-2)}
+.quad-letter{font-family:var(--display);font-style:italic;font-weight:300;font-size:88px;line-height:0.85;letter-spacing:-0.04em}
+.quad-letter.s{color:var(--green)}
+.quad-letter.w{color:var(--red)}
+.quad-letter.o{color:var(--amber)}
+.quad-letter.t{color:var(--mute)}
+.quad-title{text-align:right}
+.quad-title-k{font-family:var(--mono);font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:var(--mute);margin-bottom:6px}
+.quad-title-v{font-family:var(--display);font-weight:400;font-size:24px;letter-spacing:-0.005em}
+.quad-list{list-style:none;display:flex;flex-direction:column;gap:14px;margin-top:8px}
+.quad-list li{display:grid;grid-template-columns:24px 1fr;gap:12px;align-items:baseline;padding-bottom:12px;border-bottom:1px dotted var(--line-2)}
+.quad-list li:last-child{border-bottom:none;padding-bottom:0}
+.quad-list .k{font-family:var(--mono);font-size:10px;letter-spacing:0.16em;color:var(--amber);font-weight:500}
+.quad-list .body{font-size:14px;line-height:1.5;color:var(--paper)}
+.quad-list .body span{display:block;color:var(--dim);font-size:12.5px;margin-top:4px}
+
+/* SECTION HEADS */
+.sec{padding:clamp(60px,10vw,120px) 0;border-bottom:1px solid var(--line)}
+.sec-head{display:grid;grid-template-columns:0.6fr 1fr;gap:48px;padding-bottom:24px;border-bottom:1px solid var(--line-2);margin-bottom:40px;align-items:end}
+.sec-head .idx{font-family:var(--mono);font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:var(--amber)}
+.sec-head h2{font-family:var(--display);font-weight:300;font-size:clamp(38px,5vw,68px);line-height:1.02;letter-spacing:-0.02em;text-wrap:balance}
+.sec-head h2 em{font-style:italic;color:var(--amber)}
+.sec-aside{font-family:var(--mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);text-align:right}
+
+/* SCORECARD */
+.score-grid{display:grid;grid-template-columns:repeat(4, 1fr);gap:0;border-top:1px solid var(--line-2);border-left:1px solid var(--line-2)}
+.score-cell{padding:24px;border-right:1px solid var(--line-2);border-bottom:1px solid var(--line-2);display:flex;flex-direction:column;gap:8px}
+.score-k{font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute)}
+.score-v{font-family:var(--display);font-weight:300;font-size:48px;color:var(--amber);letter-spacing:-0.015em;line-height:1}
+.score-v sub{font-family:var(--mono);font-style:normal;font-size:11px;color:var(--mute);letter-spacing:0.1em;margin-left:4px}
+.score-bar{height:3px;background:var(--line-2);overflow:hidden;margin-top:6px}
+.score-bar-fill{height:100%;background:linear-gradient(90deg, var(--amber-deep), var(--amber));transform-origin:left}
+.score-note{font-size:12px;color:var(--dim);line-height:1.45}
+
+/* SEO TABLE */
+.seo-table{margin-top:0;border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2)}
+.seo-row{display:grid;grid-template-columns:200px 110px 1.4fr 1.6fr;gap:24px;padding:18px 0;border-bottom:1px solid var(--line-2);align-items:baseline}
+.seo-row:last-child{border-bottom:none}
+.seo-row.head{font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute);padding:14px 0}
+.seo-k{font-family:var(--display);font-weight:400;font-size:18px;color:var(--paper);letter-spacing:-0.005em}
+.seo-status{font-family:var(--mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;display:inline-flex;align-items:center;gap:6px}
+.seo-status.ok{color:var(--green)}
+.seo-status.warn{color:var(--amber)}
+.seo-status.gap{color:var(--red)}
+.seo-status::before{content:"●"}
+.seo-current{font-size:13px;color:var(--dim);line-height:1.5}
+.seo-action{font-size:13px;color:var(--paper);line-height:1.5}
+.seo-action b{color:var(--amber);font-weight:500}
+
+/* GA4 PANEL */
+.ga4-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line-2);border-left:1px solid var(--line-2)}
+.ga4-cell{padding:28px;border-right:1px solid var(--line-2);border-bottom:1px solid var(--line-2);background:var(--bg-1)}
+.ga4-cell h4{font-family:var(--display);font-weight:300;font-size:24px;letter-spacing:-0.005em;margin-bottom:8px}
+.ga4-cell h4 em{font-style:italic;color:var(--amber)}
+.ga4-cell p{color:var(--dim);font-size:13.5px;line-height:1.55;margin-bottom:14px}
+.ga4-events{font-family:var(--mono);font-size:11px;color:var(--paper);letter-spacing:0.04em;display:flex;flex-direction:column;gap:6px;padding-top:12px;border-top:1px solid var(--line-2)}
+.ga4-events b{color:var(--amber);font-weight:500}
+.ga4-events span{color:var(--mute)}
+
+/* ROADMAP */
+.road{display:grid;grid-template-columns:repeat(4, 1fr);gap:0;border-top:1px solid var(--line-2);border-left:1px solid var(--line-2)}
+.road-cell{padding:28px 24px;border-right:1px solid var(--line-2);border-bottom:1px solid var(--line-2);display:flex;flex-direction:column;gap:14px;background:var(--bg-1)}
+.road-when{font-family:var(--mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber)}
+.road-cell h4{font-family:var(--display);font-weight:300;font-size:24px;letter-spacing:-0.005em}
+.road-cell ul{list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:auto;padding-top:14px;border-top:1px solid var(--line-2)}
+.road-cell li{font-size:13px;color:var(--dim);line-height:1.5;padding-left:18px;position:relative}
+.road-cell li::before{content:"→";color:var(--amber);position:absolute;left:0;top:0}
+
+/* TARGETS */
+.kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line-2);border-left:1px solid var(--line-2)}
+.kpi-cell{padding:32px 28px;border-right:1px solid var(--line-2);border-bottom:1px solid var(--line-2);display:flex;flex-direction:column;gap:8px;background:var(--bg-1)}
+.kpi-k{font-family:var(--mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--mute)}
+.kpi-now{font-family:var(--display);font-weight:300;font-size:24px;color:var(--paper);letter-spacing:-0.005em}
+.kpi-now span{color:var(--mute);font-family:var(--mono);font-size:10px;letter-spacing:0.18em;margin-left:6px;font-style:normal}
+.kpi-arrow{font-family:var(--display);font-style:italic;font-size:32px;color:var(--amber);line-height:1;margin:4px 0}
+.kpi-target{font-family:var(--display);font-weight:300;font-size:36px;color:var(--amber);letter-spacing:-0.015em;line-height:1}
+.kpi-target span{font-family:var(--mono);font-style:normal;font-size:10px;color:var(--mute);letter-spacing:0.18em;margin-left:6px}
+.kpi-when{font-family:var(--mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--dim);margin-top:6px}
+
+/* FOOT */
+.foot{padding:60px 0 80px;text-align:center;color:var(--mute);font-family:var(--mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase}
+.foot b{color:var(--amber);font-weight:500}
+
+@media(max-width:900px){
+  .quad{grid-template-columns:1fr}
+  .seo-row{grid-template-columns:1fr;gap:6px;padding:14px 0}
+  .seo-row.head{display:none}
+  .ga4-grid,.road,.kpi{grid-template-columns:1fr}
+  .hero-lede{grid-template-columns:1fr}
+  .sec-head{grid-template-columns:1fr;text-align:left}
+  .sec-aside{text-align:left}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-meta">
+      <span>U1Dynamics · Strategic Audit</span>
+      <span>SWOT · Web · SEO · GA4</span>
+      <span><b>2026.05.01</b></span>
+    </div>
+    <h1>The site is the <em>front door</em>.<br/>This is what's good, what's broken, and what's next.</h1>
+    <div class="hero-lede">
+      <div>
+        <span class="hero-eyebrow">§ 00 · Scope</span>
+      </div>
+      <p>An honest read of u1dynamics.com as it stands today — strengths, weaknesses, opportunities, threats — paired with a tactical SEO audit and a GA4 measurement plan. Targeted at lifting qualified RFQ traffic from procurement teams searching for contract blenders, private-label partners, and DEF / specialty programs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SWOT QUADRANTS -->
+<section class="swot">
+  <div class="wrap">
+    <div class="swot-head">
+      <h2>The <em>quadrant</em>.</h2>
+      <span class="swot-head-meta">FIG.01 · INTERNAL × EXTERNAL</span>
+    </div>
+
+    <div class="quad">
+      <div class="quad-cell s">
+        <div class="quad-head">
+          <span class="quad-letter s">S</span>
+          <div class="quad-title">
+            <div class="quad-title-k">Internal · Helpful</div>
+            <div class="quad-title-v">Strengths</div>
+          </div>
+        </div>
+        <ul class="quad-list">
+          <li><span class="k">S.01</span><span class="body">Editorial visual system<span>Rare in the lubricant category. Carbon + Ox palette, Cormorant display, mono / sans pairing read more like an architecture firm than a blender — a moat in a sea of stock-photo competitors.</span></span></li>
+          <li><span class="k">S.02</span><span class="body">Hard, specific numbers<span>95k sq ft · 8,000-gal max batch · 1,000 SKUs · 44 markets · ISO 22241. Procurement teams skim for these — they're surfaced everywhere.</span></span></li>
+          <li><span class="k">S.03</span><span class="body">Real photography<span>Aerial, blending, lab, fill, label, dock. The plant exists; the site shows it. Trust signal money can't fake.</span></span></li>
+          <li><span class="k">S.04</span><span class="body">Procurement-grade content<span>Spec sheet, comparison table, FAQ, certifications grid — content buyers actually need to file a vendor approval, not marketing fluff.</span></span></li>
+          <li><span class="k">S.05</span><span class="body">Live data hooks<span>Real Pasadena weather + sectioned plant capacity readouts give the dashboard a working credibility most static sites lack.</span></span></li>
+          <li><span class="k">S.06</span><span class="body">Tweakable visual identity<span>Bronze / Sage / Ox / Steel + density toggle = quick brand pivots without re-platforming.</span></span></li>
+        </ul>
+      </div>
+
+      <div class="quad-cell w">
+        <div class="quad-head">
+          <span class="quad-letter w">W</span>
+          <div class="quad-title">
+            <div class="quad-title-k">Internal · Harmful</div>
+            <div class="quad-title-v">Weaknesses</div>
+          </div>
+        </div>
+        <ul class="quad-list">
+          <li><span class="k">W.01</span><span class="body">Single-page architecture<span>Everything lives on one URL. Google can't rank "private label motor oil" and "DEF manufacturer" separately. Each program needs its own landing page.</span></span></li>
+          <li><span class="k">W.02</span><span class="body">JS-rendered content<span>React + Babel runtime. Crawlable but slower than static HTML; LCP and INP scores will lag. Pre-rendering or SSR is on the roadmap.</span></span></li>
+          <li><span class="k">W.03</span><span class="body">Heavy hero animation<span>Custom cursor + fluid canvas + photo crossfade is beautiful but costly on mobile. Needs a perf budget pass.</span></span></li>
+          <li><span class="k">W.04</span><span class="body">No blog / insights<span>Long-tail keywords (viscosity, additive packages, OEM approvals) need editorial content. Competitors capture this; we don't yet.</span></span></li>
+          <li><span class="k">W.05</span><span class="body">Forms email-only<span>Contact form opens mailto: — no CRM hand-off, no lead scoring, no GA4 conversion server-side. Every lead is a manual entry.</span></span></li>
+          <li><span class="k">W.06</span><span class="body">Placeholder testimonials<span>Case-study attribution is generic ("North-American Fleet Services"). Real logos + names would 3× the social proof weight.</span></span></li>
+        </ul>
+      </div>
+
+      <div class="quad-cell o">
+        <div class="quad-head">
+          <span class="quad-letter o">O</span>
+          <div class="quad-title">
+            <div class="quad-title-k">External · Helpful</div>
+            <div class="quad-title-v">Opportunities</div>
+          </div>
+        </div>
+        <ul class="quad-list">
+          <li><span class="k">O.01</span><span class="body">Programmatic SEO<span>Industries × packaging × markets = 30+ landing pages with the same backbone. "Hydraulic fluid blender Houston" / "DEF private label Texas" — high intent, low competition.</span></span></li>
+          <li><span class="k">O.02</span><span class="body">EV / sustainability narrative<span>OEM lubricant specs are shifting (EV thermal fluids, low-SAPS, re-refined base oils). Few US blenders own this story online — first mover gets the OEM RFQs.</span></span></li>
+          <li><span class="k">O.03</span><span class="body">LinkedIn + AAPEX content<span>News section is dormant. Two posts/month — plant tour, AAPEX recap, new SKU launch — feed both LinkedIn and SERP.</span></span></li>
+          <li><span class="k">O.04</span><span class="body">Local-pack dominance<span>"Lubricant manufacturer Pasadena TX" / "Houston contract blender" is a small SERP. Google Business Profile + local schema + 20 reviews = top 3.</span></span></li>
+          <li><span class="k">O.05</span><span class="body">Spanish-language site<span>32 of 44 markets are Spanish-speaking. /es/ subfolder with Hreflang doubles addressable LATAM traffic at minimal incremental cost.</span></span></li>
+          <li><span class="k">O.06</span><span class="body">Procurement portal<span>Gated COA / SDS / specsheet downloads → captured email + GA4 event + sales-ready lead. High-intent users are willing to register.</span></span></li>
+        </ul>
+      </div>
+
+      <div class="quad-cell t">
+        <div class="quad-head">
+          <span class="quad-letter t">T</span>
+          <div class="quad-title">
+            <div class="quad-title-k">External · Harmful</div>
+            <div class="quad-title-v">Threats</div>
+          </div>
+        </div>
+        <ul class="quad-list">
+          <li><span class="k">T.01</span><span class="body">Incumbents own the SERP<span>Valvoline, Phillips 66, Calumet, D-A Lubricant own the head terms. We compete on long-tail and niche specs, not "motor oil manufacturer."</span></span></li>
+          <li><span class="k">T.02</span><span class="body">Base-oil price volatility<span>Brent + Group II/III moves can break private-label margins overnight. Site should communicate index transparency to keep buyers from churning on quotes.</span></span></li>
+          <li><span class="k">T.03</span><span class="body">AI-overview cannibalization<span>Google SGE answers "what is contract blending" without a click. Mitigation: depth content + structured data → cited as the source.</span></span></li>
+          <li><span class="k">T.04</span><span class="body">EV transition<span>Long-arc threat to PCMO volume. Hedge: lean into HD diesel, industrial, marine, agriculture — categories with 20+ year tails.</span></span></li>
+          <li><span class="k">T.05</span><span class="body">Tariff / port disruption<span>Houston dock dependency. A six-week port closure would hit 38 markets. Site should hint at multi-port flexibility (Galveston, NOLA backup).</span></span></li>
+          <li><span class="k">T.06</span><span class="body">Cookie / privacy shifts<span>GA4 + iOS ATT + Chrome Privacy Sandbox = attribution noise. Server-side GTM and first-party data become non-negotiable.</span></span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCORECARD -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="idx">§ 02 · Scorecard</span>
+      <h2>Where we sit, by <em>discipline</em>.</h2>
+      <span class="sec-aside">FIG.02 · 0–100 · weighted</span>
+    </div>
+    <div class="score-grid">
+      <div class="score-cell"><span class="score-k">Brand · Visual</span><span class="score-v">88<sub>/100</sub></span><div class="score-bar"><div class="score-bar-fill" style="transform:scaleX(0.88)"></div></div><span class="score-note">Editorial system is genuine differentiation. Top-decile vs. category.</span></div>
+      <div class="score-cell"><span class="score-k">Content · Depth</span><span class="score-v">62<sub>/100</sub></span><div class="score-bar"><div class="score-bar-fill" style="transform:scaleX(0.62)"></div></div><span class="score-note">Rich on the home, thin everywhere else. Needs program + industry pages.</span></div>
+      <div class="score-cell"><span class="score-k">Technical SEO</span><span class="score-v">71<sub>/100</sub></span><div class="score-bar"><div class="score-bar-fill" style="transform:scaleX(0.71)"></div></div><span class="score-note">Schema + meta solid. JS render and single-URL structure cap the ceiling.</span></div>
+      <div class="score-cell"><span class="score-k">Page Speed</span><span class="score-v">58<sub>/100</sub></span><div class="score-bar"><div class="score-bar-fill" style="transform:scaleX(0.58)"></div></div><span class="score-note">Hero canvas + Babel runtime are the cost. Pre-render path needed.</span></div>
+      <div class="score-cell"><span class="score-k">Conversion · UX</span><span class="score-v">74<sub>/100</sub></span><div class="score-bar"><div class="score-bar-fill" style="transform:scaleX(0.74)"></div></div><span class="score-note">Two-step RFQ form is strong. Mailto handoff caps measurability.</span></div>
+      <div class="score-cell"><span class="score-k">Analytics · GA4</span><span class="score-v">65<sub>/100</sub></span><div class="score-bar"><div class="score-bar-fill" style="transform:scaleX(0.65)"></div></div><span class="score-note">Page-view + outbound + lead wired. Custom events + funnel missing.</span></div>
+      <div class="score-cell"><span class="score-k">Local SEO</span><span class="score-v">55<sub>/100</sub></span><div class="score-bar"><div class="score-bar-fill" style="transform:scaleX(0.55)"></div></div><span class="score-note">LocalBusiness schema present. GBP + reviews + citations needed.</span></div>
+      <div class="score-cell"><span class="score-k">Composite</span><span class="score-v">68<sub>/100</sub></span><div class="score-bar"><div class="score-bar-fill" style="transform:scaleX(0.68)"></div></div><span class="score-note">Above category median. Roadmap targets 82 in 90 days.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SEO AUDIT TABLE -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="idx">§ 03 · SEO audit</span>
+      <h2>What's <em>indexed</em>,<br/>what's leaking.</h2>
+      <span class="sec-aside">FIG.03 · TECHNICAL × ON-PAGE × CONTENT</span>
+    </div>
+    <div class="seo-table">
+      <div class="seo-row head"><span>Item</span><span>Status</span><span>Current state</span><span>Action</span></div>
+
+      <div class="seo-row"><span class="seo-k">Title tag</span><span class="seo-status ok">OK</span><span class="seo-current">"U1Dynamics · v3 · Lubricant Blending &amp; Contract Manufacturing" — keyword-aligned, 65 chars.</span><span class="seo-action">Drop "v3"; add "Houston, TX". <b>U1Dynamics — Lubricant Blending &amp; Contract Manufacturing · Houston, TX</b></span></div>
+      <div class="seo-row"><span class="seo-k">Meta description</span><span class="seo-status ok">OK</span><span class="seo-current">160 chars, capacity + locations + offer.</span><span class="seo-action">Test 2 variants in GSC for CTR — add a CTA verb.</span></div>
+      <div class="seo-row"><span class="seo-k">Canonical URL</span><span class="seo-status ok">OK</span><span class="seo-current">Self-canonical in head.</span><span class="seo-action">Verify <b>https</b> / <b>non-www</b> consistency post-launch.</span></div>
+      <div class="seo-row"><span class="seo-k">H1</span><span class="seo-status ok">OK</span><span class="seo-current">"We make the fluid that makes things move."</span><span class="seo-action">Strong brand H1. Add an H2 below with target keywords for spec-conscious crawl.</span></div>
+      <div class="seo-row"><span class="seo-k">Heading hierarchy</span><span class="seo-status warn">WATCH</span><span class="seo-current">Several H3s without parent H2 in deeper sections.</span><span class="seo-action">Promote section headers to H2; reserve H3 for subsections.</span></div>
+      <div class="seo-row"><span class="seo-k">Image alt text</span><span class="seo-status warn">WATCH</span><span class="seo-current">Most images alt'd; gallery items use generic descriptors.</span><span class="seo-action">Add SKU + spec to product images. <b>"Ultra1Plus 5W-30 Full Synthetic API SP, 1 quart bottle"</b></span></div>
+      <div class="seo-row"><span class="seo-k">Internal links</span><span class="seo-status gap">GAP</span><span class="seo-current">Single-page; only anchor links exist.</span><span class="seo-action">Build /services, /industries, /products subtrees with reciprocal links.</span></div>
+      <div class="seo-row"><span class="seo-k">JSON-LD</span><span class="seo-status ok">OK</span><span class="seo-current">Organization, LocalBusiness, Service, BreadcrumbList, FAQPage.</span><span class="seo-action">Add <b>Product</b> schema per SKU once /products exists. Add <b>Review</b> schema with real testimonials.</span></div>
+      <div class="seo-row"><span class="seo-k">Sitemap.xml</span><span class="seo-status warn">WATCH</span><span class="seo-current">File present but lists only "/".</span><span class="seo-action">Auto-generate from URL list when /services + /industries ship.</span></div>
+      <div class="seo-row"><span class="seo-k">Robots.txt</span><span class="seo-status ok">OK</span><span class="seo-current">Allow-all, sitemap declared.</span><span class="seo-action">Disallow <b>/v2/</b>, <b>/v3/</b>, <b>/uploads/</b> if those paths reach prod.</span></div>
+      <div class="seo-row"><span class="seo-k">Mobile-friendly</span><span class="seo-status ok">OK</span><span class="seo-current">Responsive, viewport meta correct.</span><span class="seo-action">Run PSI mobile pass on every section after pre-render.</span></div>
+      <div class="seo-row"><span class="seo-k">Core Web Vitals</span><span class="seo-status warn">WATCH</span><span class="seo-current">LCP est. ~3.4s on 4G mobile. INP impacted by hero canvas.</span><span class="seo-action">Lazy-init fluid canvas; defer Babel; preload hero image. Target <b>LCP &lt; 2.5s</b>.</span></div>
+      <div class="seo-row"><span class="seo-k">HTTPS / Security</span><span class="seo-status ok">OK</span><span class="seo-current">Assumed at hosting layer.</span><span class="seo-action">Add HSTS, CSP-light, integrity hashes (already on React).</span></div>
+      <div class="seo-row"><span class="seo-k">Hreflang</span><span class="seo-status gap">GAP</span><span class="seo-current">English only.</span><span class="seo-action">Add /es/ subpath + <b>hreflang="es-419"</b> for LATAM markets.</span></div>
+      <div class="seo-row"><span class="seo-k">Open Graph</span><span class="seo-status warn">WATCH</span><span class="seo-current">Tags present; og-image referenced but generic.</span><span class="seo-action">Ship 1200×630 hero photo with logo lockup.</span></div>
+      <div class="seo-row"><span class="seo-k">Local citations</span><span class="seo-status gap">GAP</span><span class="seo-current">Google Business Profile not claimed (assumed).</span><span class="seo-action">Claim GBP · 4468 Genoa Red Bluff. Mirror NAP across <b>Yelp, BBB, Manta, ThomasNet</b>.</span></div>
+      <div class="seo-row"><span class="seo-k">Backlink profile</span><span class="seo-status gap">GAP</span><span class="seo-current">Thin — primarily Ultra1Plus retailer pages.</span><span class="seo-action">Industry pubs (Lubes'N'Greases, Lube Report). PR for AAPEX. Trade-association memberships.</span></div>
+      <div class="seo-row"><span class="seo-k">Content depth</span><span class="seo-status gap">GAP</span><span class="seo-current">~3,200 words on home; nothing else.</span><span class="seo-action">Target 12–20 long-form pages, 1,200–2,000 words each. Programmatic SEO for SKU pages.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- GA4 PLAN -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="idx">§ 04 · GA4 plan</span>
+      <h2>Measure what <em>matters</em>.</h2>
+      <span class="sec-aside">FIG.04 · MEASUREMENT MODEL</span>
+    </div>
+    <div class="ga4-grid">
+      <div class="ga4-cell">
+        <h4>Acquisition · <em>Where leads come from</em></h4>
+        <p>Track first-touch source vs. last-touch. Wire UTM hygiene on every campaign. Tag LinkedIn, AAPEX, trade-pub backlinks distinctly.</p>
+        <div class="ga4-events">
+          <span>// Custom dims</span>
+          <b>traffic_source</b> · <b>campaign_id</b> · <b>landing_program</b>
+          <span>// Channels</span>
+          <b>Organic · Direct · Referral · LinkedIn · Trade · Paid</b>
+        </div>
+      </div>
+      <div class="ga4-cell">
+        <h4>Engagement · <em>Are buyers actually reading?</em></h4>
+        <p>Scroll depth + time-on-section. Identify which capabilities (DEF, private label, custom formulation) drive deepest reads — fund content where engagement is real.</p>
+        <div class="ga4-events">
+          <span>// Auto + custom</span>
+          <b>scroll_25 · scroll_50 · scroll_75 · scroll_100</b>
+          <b>section_view</b> · <b>spec_sheet_view</b> · <b>compare_view</b>
+        </div>
+      </div>
+      <div class="ga4-cell">
+        <h4>Conversion · <em>Lead quality, not lead count</em></h4>
+        <p>Mark <code>generate_lead</code> as a Key Event. Layer secondary events: spec download, phone tap, calendar book. Each becomes a conversion path.</p>
+        <div class="ga4-events">
+          <span>// Key events</span>
+          <b>generate_lead</b> · <b>rfq_step_1</b> · <b>rfq_step_2</b> · <b>rfq_submit</b>
+          <span>// Micro-conversions</span>
+          <b>spec_download</b> · <b>phone_click</b> · <b>email_click</b>
+        </div>
+      </div>
+      <div class="ga4-cell">
+        <h4>Attribution · <em>Which programs close</em></h4>
+        <p>Tie GA4 → CRM (HubSpot / Salesforce) via measurement protocol or server-side GTM. Push <code>client_id</code> into the lead. Close-loop revenue back into GA4 for ROAS.</p>
+        <div class="ga4-events">
+          <span>// Server side</span>
+          <b>lead_qualified</b> · <b>opportunity_open</b> · <b>opportunity_won</b>
+          <span>// Modeling</span>
+          <b>data-driven attribution</b> · <b>predictive audiences</b>
+        </div>
+      </div>
+      <div class="ga4-cell">
+        <h4>Audiences · <em>Buyer segmentation</em></h4>
+        <p>Build GA4 audiences: "viewed DEF", "viewed private label", "downloaded spec sheet". Push to Google Ads + LinkedIn for retargeting.</p>
+        <div class="ga4-events">
+          <span>// Audiences</span>
+          <b>Procurement · DEF</b> · <b>Procurement · PL</b> · <b>Specialty · Marine</b>
+          <b>Returning · Spec-engaged</b>
+        </div>
+      </div>
+      <div class="ga4-cell">
+        <h4>Reporting · <em>Weekly review cadence</em></h4>
+        <p>Looker Studio dashboard pulling GA4 + Search Console + LinkedIn Ads. One scorecard, four KPIs, traffic-light status. Reviewed in Monday standup.</p>
+        <div class="ga4-events">
+          <span>// Looker</span>
+          <b>Sessions · Engaged · Lead · CPL · LCV</b>
+          <span>// Cadence</span>
+          <b>Weekly · Monthly · Quarterly OKR review</b>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 90-DAY ROADMAP -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="idx">§ 05 · Roadmap</span>
+      <h2>Ninety <em>days</em>.<br/>Four sprints.</h2>
+      <span class="sec-aside">FIG.05 · TACTICAL EXECUTION</span>
+    </div>
+    <div class="road">
+      <div class="road-cell">
+        <span class="road-when">Sprint 01 · Wk 1–2</span>
+        <h4>Foundations</h4>
+        <ul>
+          <li>Replace placeholder GA4 / GTM IDs</li>
+          <li>Claim Google Business Profile</li>
+          <li>Submit sitemap to GSC + Bing</li>
+          <li>Generate 1200×630 OG image</li>
+          <li>Wire RFQ form → HubSpot/Mailgun</li>
+          <li>Server-side GTM container</li>
+        </ul>
+      </div>
+      <div class="road-cell">
+        <span class="road-when">Sprint 02 · Wk 3–5</span>
+        <h4>Content scaffold</h4>
+        <ul>
+          <li>Build /services/* (8 pages)</li>
+          <li>Build /industries/* (8 pages)</li>
+          <li>Pre-render to static HTML</li>
+          <li>Add Product schema per SKU</li>
+          <li>Real testimonials + Review schema</li>
+          <li>Spanish landing page (/es/)</li>
+        </ul>
+      </div>
+      <div class="road-cell">
+        <span class="road-when">Sprint 03 · Wk 6–8</span>
+        <h4>Performance + measurement</h4>
+        <ul>
+          <li>LCP &lt; 2.5s, INP &lt; 200ms</li>
+          <li>Lazy-init hero canvas</li>
+          <li>Looker Studio dashboard</li>
+          <li>GA4 audiences + Ads link</li>
+          <li>Backlink push: 3 trade pubs</li>
+          <li>20 GBP reviews</li>
+        </ul>
+      </div>
+      <div class="road-cell">
+        <span class="road-when">Sprint 04 · Wk 9–13</span>
+        <h4>Scale</h4>
+        <ul>
+          <li>Blog launch — 2 posts/wk</li>
+          <li>Programmatic SKU pages</li>
+          <li>LinkedIn newsletter</li>
+          <li>Procurement portal MVP</li>
+          <li>A/B test hero CTA</li>
+          <li>EV / sustainability hub</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KPI TARGETS -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="idx">§ 06 · Targets</span>
+      <h2>What success <em>looks like</em>.</h2>
+      <span class="sec-aside">FIG.06 · 90-DAY KPI MOVEMENT</span>
+    </div>
+    <div class="kpi">
+      <div class="kpi-cell">
+        <span class="kpi-k">Organic sessions / mo</span>
+        <span class="kpi-now">~800 <span>baseline</span></span>
+        <span class="kpi-arrow">→</span>
+        <span class="kpi-target">3,200 <span>4× lift</span></span>
+        <span class="kpi-when">By Q3 · 2026</span>
+      </div>
+      <div class="kpi-cell">
+        <span class="kpi-k">Indexed pages</span>
+        <span class="kpi-now">1 <span>single page</span></span>
+        <span class="kpi-arrow">→</span>
+        <span class="kpi-target">28 <span>structured</span></span>
+        <span class="kpi-when">By Sprint 02</span>
+      </div>
+      <div class="kpi-cell">
+        <span class="kpi-k">RFQ leads / mo</span>
+        <span class="kpi-now">~6 <span>est.</span></span>
+        <span class="kpi-arrow">→</span>
+        <span class="kpi-target">25 <span>4× lift</span></span>
+        <span class="kpi-when">By Q3 · 2026</span>
+      </div>
+      <div class="kpi-cell">
+        <span class="kpi-k">LCP · mobile</span>
+        <span class="kpi-now">3.4s <span>4G</span></span>
+        <span class="kpi-arrow">→</span>
+        <span class="kpi-target">2.1s <span>passing CWV</span></span>
+        <span class="kpi-when">By Sprint 03</span>
+      </div>
+      <div class="kpi-cell">
+        <span class="kpi-k">GBP reviews</span>
+        <span class="kpi-now">0 <span>unclaimed</span></span>
+        <span class="kpi-arrow">→</span>
+        <span class="kpi-target">20 <span>4.7+ avg</span></span>
+        <span class="kpi-when">By Sprint 03</span>
+      </div>
+      <div class="kpi-cell">
+        <span class="kpi-k">Domain Authority</span>
+        <span class="kpi-now">~14 <span>Moz est.</span></span>
+        <span class="kpi-arrow">→</span>
+        <span class="kpi-target">28 <span>+14 pts</span></span>
+        <span class="kpi-when">By Q4 · 2026</span>
+      </div>
+      <div class="kpi-cell">
+        <span class="kpi-k">Top-3 keywords</span>
+        <span class="kpi-now">2 <span>brand only</span></span>
+        <span class="kpi-arrow">→</span>
+        <span class="kpi-target">15 <span>category</span></span>
+        <span class="kpi-when">By Q3 · 2026</span>
+      </div>
+      <div class="kpi-cell">
+        <span class="kpi-k">CPL · paid blend</span>
+        <span class="kpi-now">— <span>not running</span></span>
+        <span class="kpi-arrow">→</span>
+        <span class="kpi-target">$140 <span>target</span></span>
+        <span class="kpi-when">Sprint 04 launch</span>
+      </div>
+      <div class="kpi-cell">
+        <span class="kpi-k">Composite score</span>
+        <span class="kpi-now">68 <span>today</span></span>
+        <span class="kpi-arrow">→</span>
+        <span class="kpi-target">82 <span>target</span></span>
+        <span class="kpi-when">By Q3 · 2026</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="foot wrap">
+  <span>U1Dynamics · SWOT · 2026.05.01 · Prepared for the operator <b>· REV.01</b></span>
+</div>
+
+</body>
+</html>
