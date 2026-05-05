@@ -1919,3 +1919,45 @@ body[data-loader="off"] .loader { display: none; }
   .ticker-track { gap: 36px; padding-left: 36px; }
   .gframe-hero .gframe-meta-cap h4 { font-size: 22px; }
 }
+/* === READABILITY V2 — strong overrides over var(--paper) === */
+
+html[lang] body p,
+html[lang] body section p,
+html[lang] body article p,
+html[lang] body main p,
+html[lang] body div p,
+html[lang] body li {
+  color: #e8e8e8 !important;
+  font-size: 17px !important;
+  line-height: 1.65 !important;
+}
+
+/* Hero / lead paragraphs — brighter, with shadow for image overlays */
+html[lang] body section:first-of-type p,
+html[lang] body [class*="hero"] p:not([class*="meta"]):not([class*="lbl"]),
+html[lang] body [class*="lead"] p,
+html[lang] body [class*="intro"] p {
+  color: #fafafa !important;
+  font-size: 18px !important;
+  line-height: 1.55 !important;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.55);
+}
+
+/* Capability / card description text */
+html[lang] body [class*="card"] p,
+html[lang] body [class*="cap-"] p,
+html[lang] body [class*="capability"] p,
+html[lang] body [class*="-desc"],
+html[lang] body [class*="description"] {
+  color: #e8e8e8 !important;
+  font-size: 17px !important;
+  line-height: 1.65 !important;
+}
+
+/* Headings crisp white */
+html[lang] body h1,
+html[lang] body h2,
+html[lang] body h3,
+html[lang] body h4 {
+  color: #fafafa !important;
+}
