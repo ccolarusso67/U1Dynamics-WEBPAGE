@@ -2014,3 +2014,43 @@ html[lang] body [class*="hero"] p:not([class*="meta"]):not([class*="lbl"]):not([
 .trust-logo:hover {
   opacity: 1;
 }
+/* === TRUST: two-row layout with retailer logo pills === */
+.trust-block {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+.trust-block:last-child {
+  border-bottom: none;
+}
+.trust-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  flex: 1;
+}
+.trust-partner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  width: 110px;
+  background: var(--paper);
+  border-radius: 4px;
+  padding: 6px 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.trust-partner:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+.trust-logo {
+  max-height: 28px;
+  max-width: 100%;
+  width: auto;
+  object-fit: contain;
+}
